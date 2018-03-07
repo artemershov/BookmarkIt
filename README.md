@@ -1,5 +1,5 @@
 # BokmarkIt
-Service for store and organize your bookmarks.
+A service for storing and organizing your bookmarks.
 
 ![BokmarkIt](https://i.imgur.com/T8H857H.png)
 
