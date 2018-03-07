@@ -1,0 +1,12 @@
+.modal.fade(tabindex='-1')
+  .modal-dialog.modal-sm
+    .modal-content.no-overflow.no-border
+      .modal-body.text-center
+        div(ng-if='confirm.param.icon')
+          i.fa.fa-5x.text-success(ng-class='confirm.param.icon ? confirm.param.icon : "fa-question-circle"')
+        h4.h3.margin-xs-v.text-bold {{confirm.param.title || 'Вы подтверждаете действие?'}}
+        .btn-group.btn-group-justified
+          .btn-group
+            button.confirm-no.btn.btn-default(type='button', ng-click='confirm.action(false)') {{confirm.param.btn.cancel || 'Нет'}}
+          .btn-group
+            button.confirm-yes.btn.btn-primary(type='button', ng-click='confirm.action(true)') {{confirm.param.btn.agree || 'Да'}}

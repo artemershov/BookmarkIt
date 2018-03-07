@@ -1,0 +1,152 @@
+.modal.fade#bookmark-edit-modal(tabindex='-1')
+  .modal-dialog
+    .modal-content.no-overflow.no-border
+
+      //- Edit form 
+      form.bookmark-edit-form(ng-if='bookmarkForm.edit.panel.state.main', ng-submit='bookmarkForm.edit.main.submit()')
+
+        //- Header 
+        .modal-header.bg-primary.no-border
+          .media-object.media-valign-middle.line-height-xs
+            .media-body
+              h4.no-margin Редактор закладки
+            .media-right
+              button.btn.btn-xs.btn-primary(ng-click='bookmarkForm.edit.close()', type='button')
+                i.fa.fa-fw.fa-close
+
+        //- Image 
+        bookmark-image(ng-if='bookmarkForm.edit.copy', image='bookmarkForm.edit.copy.image', link='bookmarkForm.edit.copy.link', width='640', height='400')
+        .modal-body.bg-default
+          .row.row-narrow
+
+            //- Parse data btn 
+            .col-xs-6
+              button.btn.btn-sm.btn-block.btn-default(ng-disabled='bookmarkForm.edit.parse.loading', ng-click='bookmarkForm.edit.parse.loading || bookmarkForm.edit.parse.action()', type='button')
+                span(ng-if='bookmarkForm.edit.parse.loading')
+                  i.fa.fa-fw.fa-spin.fa-circle-o-notch
+                  |  Загрузка
+                span(ng-if='!bookmarkForm.edit.parse.loading')
+                  i.fa.fa-fw.fa-file-text-o.hidden-xs
+                  |  Обновить данные
+
+            //- Image change btn 
+            .col-xs-6
+              .header-select.dropdown
+                button.btn.btn-sm.btn-block.btn-default.dropdown-toggle(ng-disabled='bookmarkForm.edit.image.loading', type='button', data-toggle='dropdown')
+                  i.fa.fa-fw.fa-photo.hidden-xs
+                  |  Заменить картинку
+                ul.dropdown-menu
+                  li
+                    a.text-ellipsis(ng-click='bookmarkForm.edit.image.open()', href='javascript:;')
+                      i.fa.fa-fw.fa-file
+                      |  Выбрать со страницы
+                  li
+                    a.text-ellipsis(ng-click='bookmarkForm.edit.panel.state.url = !bookmarkForm.edit.panel.state.url', href='javascript:;')
+                      i.fa.fa-fw.fa-link
+                      |  Указать URL
+                  li
+                    a.text-ellipsis(ng-click='bookmarkForm.edit.create.open()', href='javascript:;')
+                      i.fa.fa-fw.fa-image
+                      |  Создать
+
+        //- Image url form 
+        .collapse(collapse='bookmarkForm.edit.panel.state.url')
+          .modal-body.bg-light
+            input.form-control(ng-model='bookmarkForm.edit.copy.image', type='text', placeholder='URL картинки')
+
+        .modal-body
+          //- Link 
+          .form-group
+            input.form-control(ng-model='bookmarkForm.edit.copy.link', type='text', placeholder='Ссылка', required='', maxlength='150')
+          //- Title 
+          .form-group
+            input.form-control(ng-model='bookmarkForm.edit.copy.title', type='text', placeholder='Заголовок', required='', maxlength='100')
+          //- Description 
+          .form-group
+            input.form-control(ng-model='bookmarkForm.edit.copy.text', type='text', placeholder='Описание', maxlength='200')
+          //- Group 
+          .form-group
+            select.form-control(ng-options='g.id as ((g.title.length > 50) ? ((g.title | limitTo:50) + "...") : g.title) for g in groups', ng-model='bookmarkForm.edit.copy.gid')
+          .row.row-narrow
+            //- Cancel 
+            .col-xs-6
+              button.btn.btn-block.btn-default(ng-click='bookmarkForm.edit.close()', type='button')
+                i.fa.fa-fw.fa-times
+            //- Save 
+            .col-xs-6
+              button.btn.btn-block.btn-primary(ng-disabled='bookmarkForm.edit.main.loading', type='submit')
+                i.fa.fa-fw.fa-check(ng-class='{"fa-check": !bookmarkForm.edit.main.loading, "fa-spin fa-circle-o-notch": bookmarkForm.edit.main.loading}')
+
+      //- Parsed images 
+      .bookmark-edit-image(ng-if='bookmarkForm.edit.panel.state.image')
+
+        //- Header 
+        .modal-header.bg-primary.no-border
+          .media-object.media-valign-middle.line-height-xs
+            .media-body
+              h4.no-margin Выберите картинку
+            .media-right
+              button.btn.btn-xs.btn-primary(ng-click='bookmarkForm.edit.panel.toggle("main")', type='button') Назад
+
+        //- Image list 
+        .modal-body
+          .bookmark-grid.bookmark-tile.row.row-narrow.panel-container.no-overflow(ng-if='bookmarkForm.edit.image.data.length')
+            .col-xs-6.col-sm-3(ng-repeat='i in bookmarkForm.edit.image.data track by $index')
+              .bookmark-item.panel.panel-default.no-border(ng-click='bookmarkForm.edit.image.select(i)')
+                .bookmark-image
+                  .bookmark-image-bg.bg-light.bg-contain.bg-pos-cc.bg-notile(style='background-image: url("{{i}}");')
+
+          //- Placeholder 
+          .margin-xs-t.margin-sm-b.text-center(ng-if='!bookmarkForm.edit.image.data.length')
+            i.fa.fa-fw.fa-3x.fa-photo
+            h4.h3.text-bold Нет картинок
+
+      //- Create image form 
+      .bookmark-edit-create(ng-if='bookmarkForm.edit.panel.state.create')
+
+        //- Header 
+        .modal-header.bg-primary.no-border
+          .media-object.media-valign-middle.line-height-xs
+            .media-body
+              h4.no-margin Создание картинки
+            .media-right
+              button.btn.btn-xs.btn-primary(ng-click='bookmarkForm.edit.panel.toggle("main")', type='button') Назад
+
+        //- Image 
+        bookmark-image(ng-if='bookmarkForm.edit.create.data', image='bookmarkForm.edit.create.data', link='', width='640', height='400')
+
+        .modal-body.bg-primary-dark
+          .row.row-narrow.form-group-container
+            //- FG color 
+            .col-xs-6.col-sm-3
+              .form-group
+                input.form-control.no-padding.no-overflow(ng-model='bookmarkForm.edit.create.data[1]', type='color', title='Цвет иконки', data-toggle='tooltip')
+            //- BG color 
+            .col-xs-6.col-sm-3
+              .form-group
+                input.form-control.no-padding.no-overflow(ng-model='bookmarkForm.edit.create.data[2]', type='color', title='Цвет фона', data-toggle='tooltip')
+            //- Icon toggle 
+            .col-xs-6.col-sm-3
+              .form-group
+                button.btn.btn-block.btn-primary(ng-click='bookmarkForm.edit.panel.state.icons = !bookmarkForm.edit.panel.state.icons', type='button', title='Панель иконок', data-toggle='tooltip')
+                  i.fa.fa-fw.fa-image
+            //- Submit 
+            .col-xs-6.col-sm-3
+              .form-group
+                button.btn.btn-block.btn-success(ng-click='bookmarkForm.edit.create.save()', title='Сохранить', data-toggle='tooltip')
+                  i.fa.fa-fw.fa-check
+
+        //- Icons panel 
+        .collapse(collapse='bookmarkForm.edit.panel.state.icons')
+
+          //- Icons search 
+          .modal-body.bg-default
+            input.form-control(ng-model='bookmarkForm.edit.create.search', type='text', placeholder='Найти иконку')
+
+          //- Icons list 
+          .modal-body.bg-light.overflow-auto(style='max-height: 450px;')
+            .bookmark-grid.bookmark-tile.row.row-narrow.panel-container.no-overflow
+              .col-xs-4.col-sm-3(ng-repeat='i in bookmarkForm.edit.create.icons | filter:bookmarkForm.edit.create.search track by $index')
+                .bookmark-item.panel.panel-default.no-border(ng-click='bookmarkForm.edit.create.data[0] = i[2]', title='{{i[1]}}', data-toggle='tooltip')
+                  .bookmark-image.text-center
+                    i.fa.line-height-1(ng-class='i[0]')

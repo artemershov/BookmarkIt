@@ -1,0 +1,137 @@
+.settings.current.bg-primary-dark.dark-scroll.box-text-white
+  .padding-xs-v
+    .container.header-btn-container
+      .row.row-narrow
+
+        .col-xs-12.col-sm-3
+
+          //- Header 
+          h4.text-ellipsis.text-bold Сортировка и группировка
+
+          //- Sort options 
+          .header-select.dropdown
+            button.header-btn.btn.btn-block.btn-primary.dropdown-toggle(ng-switch='settings.current.sort', type='button', data-toggle='dropdown')
+              .text-ellipsis.text-left(ng-switch-when='date')
+                i.fa.fa-fw.fa-calendar.text-success
+                |  По дате создания
+              .text-ellipsis.text-left(ng-switch-when='title')
+                i.fa.fa-fw.fa-font.text-success
+                |  По алфавиту
+              .text-ellipsis.text-left(ng-switch-when='pos')
+                i.fa.fa-fw.fa-hand-pointer-o.text-success
+                |  Ручная сортировка
+            ul.dropdown-menu
+              li
+                a.text-ellipsis(ng-click='settingsSet("sort", "date")', href='javascript:;')
+                  i.fa.fa-fw.fa-calendar
+                  |  По дате создания
+              li
+                a.text-ellipsis(ng-click='settingsSet("sort", "title")', href='javascript:;')
+                  i.fa.fa-fw.fa-font
+                  |  По алфавиту
+              li
+                a.text-ellipsis(ng-click='settingsSet("sort", "pos")', href='javascript:;')
+                  i.fa.fa-fw.fa-hand-pointer-o
+                  |  Ручная сортировка
+              li.divider.no-margin
+              li
+                a.text-ellipsis(ng-click='settingsSet("reverse", !settings.current.reverse)', href='javascript:;')
+                  i.display-inline.fa.fa-lg.fa-fw(ng-class='{"fa-toggle-on text-success": !settings.current.reverse, "fa-toggle-off text-muted" : settings.current.reverse}')
+                  |  В обратном порядке
+
+          //- Group option 
+          button.header-btn.btn.btn-block.btn-primary(ng-click='settingsSet("group", !settings.current.group)', type='button')
+            .text-ellipsis.text-left
+              i.display-inline.fa.fa-lg.fa-fw(ng-class='{"fa-toggle-on text-success": settings.current.group, "fa-toggle-off text-muted" : !settings.current.group}')
+              |  Групировка по категориям
+
+        .col-xs-12.col-sm-3
+
+          //- Header 
+          h4.text-ellipsis.text-bold Вид и размер
+
+          //- View options 
+          .header-select.dropdown
+            button.header-btn.btn.btn-block.btn-primary.dropdown-toggle(ng-switch='settings.current.layout', type='button', data-toggle='dropdown')
+              .text-ellipsis.text-left(ng-switch-when='card')
+                i.fa.fa-fw.fa-th-large.text-success
+                |  Карточки
+              .text-ellipsis.text-left(ng-switch-when='tile')
+                i.fa.fa-fw.fa-th.text-success
+                |  Плитка
+              .text-ellipsis.text-left(ng-switch-when='table')
+                i.fa.fa-fw.fa-th-list.text-success
+                |  Таблица
+            ul.dropdown-menu
+              li
+                a.text-ellipsis(ng-click='settingsSet("layout", "card")', href='javascript:;')
+                  i.fa.fa-fw.fa-th-large
+                  |  Карточки
+              li
+                a.text-ellipsis(ng-click='settingsSet("layout", "tile")', href='javascript:;')
+                  i.fa.fa-fw.fa-th
+                  |  Плитка
+              li
+                a.text-ellipsis(ng-click='settingsSet("layout", "table")', href='javascript:;')
+                  i.fa.fa-fw.fa-th-list
+                  |  Таблица
+
+          //- Size options 
+          .header-select.dropdown
+            button.header-btn.btn.btn-block.btn-primary.dropdown-toggle(ng-switch='settings.current.size', type='button', data-toggle='dropdown')
+              .text-ellipsis.text-left(ng-switch-when='s')
+                i.fa.fa-fw.fa-minus-square.text-success
+                |  Маленький
+              .text-ellipsis.text-left(ng-switch-when='m')
+                i.fa.fa-fw.fa-square.text-success
+                |  Обычный
+              .text-ellipsis.text-left(ng-switch-when='l')
+                i.fa.fa-fw.fa-plus-square.text-success
+                |  Большой
+            ul.dropdown-menu
+              li
+                a.text-ellipsis(ng-click='settingsSet("size", "s")', href='javascript:;')
+                  i.fa.fa-fw.fa-minus-square
+                  |  Маленький
+              li
+                a.text-ellipsis(ng-click='settingsSet("size", "m")', href='javascript:;')
+                  i.fa.fa-fw.fa-square
+                  |  Обычный
+              li
+                a.text-ellipsis(ng-click='settingsSet("size", "l")', href='javascript:;')
+                  i.fa.fa-fw.fa-plus-square
+                  |  Большой
+
+        .col-xs-12.col-sm-3
+
+          //- Header 
+          h4.text-ellipsis.text-bold Другое
+
+          //- New tab option 
+          button.header-btn.btn.btn-block.btn-primary(ng-click='settingsSet("newtab", !settings.global.newtab, true)', type='button')
+            .text-ellipsis.text-left
+              i.display-inline.fa.fa-lg.fa-fw(ng-class='{"fa-toggle-on text-success": settings.global.newtab, "fa-toggle-off text-muted" : !settings.global.newtab}')
+              |  Открывать в новой вкладке
+
+          //- Search form 
+          button.header-btn.btn.btn-block.btn-primary(ng-click='settingsSet("search", !settings.global.search, true)', type='button')
+            .text-ellipsis.text-left
+              i.display-inline.fa.fa-lg.fa-fw(ng-class='{"fa-toggle-on text-success": settings.global.search, "fa-toggle-off text-muted" : !settings.global.search}')
+              |  Глобальный поиск
+
+        .col-xs-12.col-sm-3
+
+          //- Header 
+          h4.text-ellipsis.text-bold Аккаунт
+
+          //- Profile modal 
+          button.header-btn.btn.btn-block.btn-primary(type='button', data-toggle='modal', data-target='#profile-modal')
+            .text-ellipsis.text-left
+              i.fa.fa-fw.fa-user.text-muted
+              |  Профиль
+
+          //- Logout modal 
+          a.header-btn.btn.btn-block.btn-primary(href='logout')
+            .text-ellipsis.text-left
+              i.fa.fa-fw.fa-sign-out.text-muted
+              |  Выход

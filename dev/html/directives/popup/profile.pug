@@ -1,0 +1,64 @@
+.modal.fade#profile-modal(tabindex='-1')
+  .modal-dialog
+    .modal-content.no-overflow.no-border
+
+      .modal-header.bg-primary.no-border
+        .media-object.media-valign-middle.line-height-xs
+          .media-body
+            h3.h4.no-margin Настройки профиля
+          .media-right
+            button.btn.btn-xs.btn-primary(type='button', data-dismiss='modal')
+              i.fa.fa-fw.fa-close
+
+      .modal-body
+
+        //- Sessions 
+        .margin-md-b
+          .form-group
+            h4.no-margin
+              | Завершить все сеансы
+              i.fa.fa-fw.fa-info-circle.small(data-toggle='tooltip', title='Действие сбросит авторизацию во всех браузерах кроме текущеко')
+          .alert.alert-success(ng-if='user.session.alert == 1') Сеансы завершены
+          button.btn.btn-primary(ng-disabled='user.session.loading', ng-click='user.session.action()', type='button')
+            span(ng-if='user.session.loading')
+              i.fa.fa-fw.fa-spin.fa-circle-o-notch
+              |  Загрузка
+            span(ng-if='!user.session.loading') Завершить
+
+        //- Pass change 
+        form.margin-md-b(ng-submit='user.pass.submit()')
+          .form-group
+            h4.no-margin Смена пароля
+          div(ng-switch='user.pass.alert')
+            .alert.alert-success(ng-switch-when='1') Пароль успешно изменен
+            .alert.alert-danger(ng-switch-when='2') Неверный пароль
+            .alert.alert-warning(ng-switch-when='3') Пароли не совпадают
+            .alert.alert-warning(ng-switch-when='4') Введены некорректные данные
+          .form-group
+            input.form-control(ng-model='user.pass.data.old', type='password', placeholder='Старый пароль', required='', minlength='3', maxlength='100')
+          .form-group
+            input.form-control(ng-model='user.pass.data.new', type='password', placeholder='Новый пароль', required='', minlength='3', maxlength='100')
+          .form-group
+            input.form-control(ng-model='user.pass.data.re', type='password', placeholder='Повтор пароля', required='', minlength='3', maxlength='100')
+          button.btn.btn-primary(ng-disabled='user.pass.loading', type='submit')
+            span(ng-if='user.pass.loading')
+              i.fa.fa-fw.fa-spin.fa-circle-o-notch
+              |  Загрузка
+            span(ng-if='!user.pass.loading') Сохранить
+
+        //- Remove account 
+        form(ng-submit='user.delete.submit()')
+          .form-group
+            h4.no-margin
+              | Удалить аккаунт
+              i.fa.fa-fw.fa-info-circle.small(data-toggle='tooltip', title='При удалении аккаунта все данные будут удалены без возможности восстановления')
+          div(ng-switch='user.delete.alert')
+            .alert.alert-success(ng-switch-when='1') Аккаунт удален
+            .alert.alert-danger(ng-switch-when='2') Неверный пароль
+          .form-group
+            input.form-control(ng-model='user.delete.pass', type='password', placeholder='Пароль от аккаунта', required='', minlength='3', maxlength='100')
+          button.btn.btn-primary(ng-disabled='user.delete.loading', type='submit')
+            span(ng-if='user.delete.loading')
+              i.fa.fa-fw.fa-spin.fa-circle-o-notch
+              |  Загрузка
+            span(ng-if='!user.delete.loading') Удалить

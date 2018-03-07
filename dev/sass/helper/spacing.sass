@@ -1,0 +1,39 @@
+.panel-container
+  margin-bottom: -21px
+
+@mixin spacesOnSides($param, $val, $map)
+  @each $b in $bpnames
+    $s: if($map, map-get($val, #{$b}), $val)
+    &-#{$b}
+      #{$param}: $s
+      &-b
+        #{$param}-bottom: $s
+      &-t
+        #{$param}-top: $s
+      &-l
+        #{$param}-left: $s
+      &-r
+        #{$param}-right: $s
+      &-h
+        #{$param}:
+          left: $s
+          right: $s
+      &-v
+        #{$param}:
+          top: $s
+          bottom: $s
+
+.no
+  &-padding
+    padding: 0
+    @include spacesOnSides(padding, 0, false)
+
+  &-margin
+    margin: 0
+    @include spacesOnSides(margin, 0, false)
+
+.padding
+  @include spacesOnSides(padding, $spaces, true)
+
+.margin
+  @include spacesOnSides(margin, $spaces, true)

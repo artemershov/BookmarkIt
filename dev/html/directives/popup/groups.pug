@@ -1,0 +1,75 @@
+.modal.fade#groups-edit-modal(tabindex='-1')
+  .modal-dialog
+    .modal-content.no-overflow.no-border
+      .modal-header.bg-primary.no-border
+        .media-object.media-valign-middle.line-height-xs
+          .media-body
+            h3.h4.no-margin Настройка категорий
+          .media-right
+            button.btn.btn-xs.btn-primary(type='button', data-dismiss='modal')
+              i.fa.fa-fw.fa-close
+
+      .modal-body.bg-light
+
+        //- Groups list 
+        ul.group-list.list-group.no-margin(
+          ng-if='groups.length', 
+          dnd-list='groups', 
+          dnd-allowed-types='["group"]'
+          dnd-drop='callback({to: index})', 
+        )
+
+          //- Group item 
+          li.list-group-item(
+            ng-repeat='g in groups track by g.id', 
+            dnd-disable-if='g.edit', 
+            dnd-draggable='g', 
+            dnd-type='"group"', 
+            dnd-callback='groupform.actions.reorder(g, $index, to)'
+          )
+
+            .group-item.display-table.table-fixed.table-valign-middle(ng-hide='g.edit')
+
+              //- Group title 
+              .group-title.display-tcell.text-ellipsis {{g.title}}
+
+              //- Group item action 
+              .group-actions.display-tcell.text-right
+                .btn-group
+                  button.btn.btn-xs.btn-link(ng-click='groupform.edit.open(g)', type='button', title='Редактировать', data-toggle='tooltip')
+                    i.fa.fa-fw.fa-edit
+                  button.btn.btn-xs.btn-link(ng-click='groupform.actions.delete(g.id)', type='button', title='Удалить', data-toggle='tooltip')
+                    i.fa.fa-fw.fa-trash-o
+
+            //- Group edit form 
+            form.bookmark-group-form(ng-show='g.edit', ng-submit='groupform.edit.action(g)')
+              .form-group-container
+                .row.row-narrow
+                  .col-xs-12.col-sm-9
+                    .form-group
+                      input.form-control.input-sm(ng-model='g.copy', type='text', placeholder='Название категории', required='')
+                  .col-xs-12.col-sm-3
+                    .form-group
+                      .row.row-narrow
+                        .col-xs-6
+                          button.btn.btn-sm.btn-block.btn-primary(ng-disabled='groupform.edit.loading', type='submit')
+                            i.fa.fa-fw.fa-check(ng-if='!groupform.edit.loading')
+                            i.fa.fa-fw.fa-spin.fa-circle-o-notch(ng-if='groupform.edit.loading')
+                        .col-xs-6
+                          button.btn.btn-sm.btn-block.btn-default(ng-click='groupform.edit.close(g)', type='button')
+                            i.fa.fa-fw.fa-times
+
+        //- Groups placeholder 
+        .group-list-placeholder.margin-sm-v.text-center(ng-if='!groups.length')
+          i.fa.fa-fw.fa-3x.fa-folder-open-o
+          h4.h3.text-bold.no-margin Нет категорий
+          div Добавьте категорию с помощью формы внизу
+
+        //- Group add form 
+        form.group-form.bg-default(ng-submit='groupform.add.action()')
+          .input-group
+            input.form-control(ng-model='groupform.add.title', type='text', placeholder='Название категории', required='')
+            .input-group-btn
+              button.btn.btn-block.btn-default(ng-disabled='groupform.add.loading', type='submit')
+                i.fa.fa-fw.fa-plus-circle(ng-if='!groupform.add.loading')
+                i.fa.fa-fw.fa-spin.fa-circle-o-notch(ng-if='groupform.add.loading')

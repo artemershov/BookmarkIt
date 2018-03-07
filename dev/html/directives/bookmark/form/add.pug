@@ -1,0 +1,34 @@
+.bg-primary-dark.box-text-white
+  .container
+    form.bookmark-add-form.padding-xs-v(ng-submit='bookmarkForm.add.submit()')
+      .form-group-container
+        .row.row-narrow
+          .col-xs-12.col-sm-8
+            .form-group
+              input.header-input.form-control(ng-model='bookmarkForm.add.data.link', type='text', placeholder='Ссылка', required='', maxlength='150')
+          .col-xs-9.col-sm-3
+            .form-group
+              .header-select.dropdown
+                button.btn.btn-block.btn-primary.dropdown-toggle(ng-switch='bookmarkForm.add.data.gid', type='button', data-toggle='dropdown')
+                  .text-ellipsis.text-left(ng-switch-when='null')
+                    i.fa.fa-fw.fa-folder.text-muted
+                    |  Выберите категорию
+                  .text-ellipsis.text-left(ng-switch-default='bookmarkForm.add.data.gid')
+                    i.fa.fa-fw.fa-folder.text-muted
+                    |  {{(groups | getById:bookmarkForm.add.data.gid).title}}
+                ul.dropdown-menu
+                  li(ng-repeat='g in groups track by g.id')
+                    a.text-ellipsis(ng-click='bookmarkForm.add.data.gid = g.id', href='javascript:;')
+                      i.fa.fa-fw.fa-folder
+                      |  {{g.title}}
+                  li.divider
+                  li
+                    a.text-ellipsis(href='javascript:;', data-toggle='modal', data-target='#groups-edit-modal')
+                      i.fa.fa-fw.fa-folder-open
+                      |  Настроить категории
+          .col-xs-3.col-sm-1
+            .form-group
+              button.btn.btn-block.btn-success(ng-disabled='bookmarkForm.add.loading', type='submit')
+                i.fa.fa-fw.fa-check
+      .bookmark-form-loading.bg-primary-dark.display-flex.flex-column.flex-justify-center.text-center.box-text-white(ng-if='bookmarkForm.add.loading')
+        i.fa.fa-3x.fa-spin.fa-circle-o-notch

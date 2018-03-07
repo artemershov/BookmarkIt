@@ -1,0 +1,106 @@
+.text
+  &-xxlight
+    font-weight: 100
+  &-xlight
+    font-weight: 200
+  &-light
+    font-weight: 300
+  &-regular
+    font-weight: 400
+  &-bold
+    font-weight: 700
+  &-xbold
+    font-weight: 800
+  &-xxbold
+    font-weight: 900
+
+  &-normal
+    font-style: normal
+  &-italic
+    font-style: italic
+  &-oblique
+    font-style: oblique
+
+  &-strike
+    text-decoration: line-throug
+  &-underline
+    text-decoration: underline
+
+  &-ellipsis
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
+
+.xx-small
+  font-size: xx-small !important
+.x-small
+  font-size: x-small !important
+.medium
+  font-size: medium !important
+.large
+  font-size: large !important
+.x-large
+  font-size: x-large !important
+.xx-large
+  font-size: xx-large !important
+
+.line-height
+  &-1
+    line-height: 1
+  &-xs
+    line-height: 25px
+  &-sm
+    line-height: 35px
+  &-md
+    line-height: 45px
+  &-lg
+    line-height: 65px
+
+@media (max-width: $screen-xs-max)
+  .text
+    &-justify-xs
+      text-align: justify
+    &-center-xs
+      text-align: center
+    &-left-xs
+      text-align: left
+    &-right-xs
+      text-align: right
+
+@media (min-width: $screen-sm-min)
+  .text
+    &-justify-sm
+      text-align: justify
+    &-center-sm
+      text-align: center
+    &-left-sm
+      text-align: left
+    &-right-sm
+      text-align: right
+
+@media (min-width: $screen-md-min)
+  .text
+    &-justify-md
+      text-align: justify
+    &-center-md
+      text-align: center
+    &-left-md
+      text-align: left
+    &-right-md
+      text-align: right
+
+@media (min-width: $screen-lg-min)
+  .text
+    &-justify-lg
+      text-align: justify
+    &-center-lg
+      text-align: center
+    &-left-lg
+      text-align: left
+    &-right-lg
+      text-align: right
+
+hr.divider
+  margin: 10px 0
+.list-inline.no-margin
+  margin-left: -5px !important

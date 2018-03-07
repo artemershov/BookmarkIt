@@ -1,0 +1,54 @@
+.logo
+  font-family: 'Times New Roman', serif
+  i
+    color: red
+.header
+  position: relative
+  z-index: 10
+  height: 76px
+  padding: 15px 0
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5)
+
+  &-logo, &-logo i
+    font-size: 24px
+    line-height: 21px
+
+  &-input
+    background: #23313f
+    border-color: #23313f
+    color: #FFF
+    font-size: 16px
+    &:focus
+      background: $color-primary-dark
+      border-color: #161f29
+
+  &-btn
+    margin-bottom: 10px
+
+  &-container
+    margin-bottom: -10px
+
+  &-select .dropdown-menu
+    max-height: 300px
+    width: 100%
+    padding: 0
+    overflow: auto
+    a
+      padding: 10px
+      font-size: 16px
+
+.settings h4
+  margin: 0 0 10px
+
+@media (max-width: $screen-xs-max)
+  .settings, .groups
+    height: 100%
+    width: 100%
+    padding-top: 76px
+    position: fixed
+    top: 0
+    z-index: 5
+    overflow-y: auto
+
+.box-text-white
+  color: #FFF

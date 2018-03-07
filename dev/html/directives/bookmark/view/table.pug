@@ -1,0 +1,60 @@
+.bookmark-item.display-table.table-fixed.table-valign-middle
+
+  //- Bookmarks favicon 
+  a.bookmark-link.bookmark-favicon.display-tcell.text-center(ng-switch='b.favicon.length', href='{{b.link}}', target='{{settings.global.newtab ? "_blank" : "_self"}}', rel='noopener')
+    i.fa.fa-image.text-muted(ng-switch-when='0', ng-class='{"fa-2x": size == "m", "fa-3x": size == "l"}')
+    img.img-responsive.center-block(ng-switch-default='', src='{{b.favicon}}', alt='')
+
+  //- Bookmarks link 
+  a.bookmark-link.bookmark-body.display-tcell(href='{{b.link}}', target='{{settings.global.newtab ? "_blank" : "_self"}}', rel='noopener')
+
+    //- Bookmarks title 
+    h3.bookmark-title.h4.no-margin.text-ellipsis.text-bold.text-primary(ng-if='b.title') {{b.title}}
+
+    //- Bookmarks description 
+    .bookmark-text.text-ellipsis.small.line-height-1.text-muted(ng-if='b.text && size != "s"') {{b.text}}
+
+    //- Bookmarks site 
+    .bookmark-site.text-ellipsis.small.line-height-1.text-success(ng-if='size == "l"') {{b.link | urlSiteName}}
+
+  //- Bookmarks action mobile 
+  .bookmark-actions.display-tcell.text-right
+    .dropdown.visible-xs-block
+      button.btn.btn-xs.btn-link(type='button', data-toggle='dropdown')
+        i.fa.fa-fw.fa-caret-down
+      ul.dropdown-menu.dropdown-menu-right
+        li
+          a(ng-click='b.batch = !b.batch', href='javascript:;')
+            span(ng-if='b.batch')
+              i.fa.fa-fw.fa-check-square
+              |  Убрать из выбора
+            span(ng-if='!b.batch')
+              i.fa.fa-fw.fa-square-o
+              |  Выбрать для редактирования
+        li
+          a(ng-click='bookmarkActions.star(b)', href='javascript:;')
+            span(ng-if='b.star')
+              i.fa.fa-fw.fa-star
+              |  Убрать из избранного
+            span(ng-if='!b.star')
+              i.fa.fa-fw.fa-star-o
+              |  Добавить в избранное
+        li
+          a(ng-click='bookmarkActions.edit(b)', href='javascript:;')
+            i.fa.fa-fw.fa-edit
+            |  Редактировать
+        li
+          a(ng-click='bookmarkActions.delete(b.id)', href='javascript:;')
+            i.fa.fa-fw.fa-trash-o
+            |  Удалить
+
+    //- Bookmarks action 
+    .btn-group.hidden-xs
+      button.btn.btn-xs.btn-link(ng-click='b.batch = !b.batch', title='{{b.batch ? "Убрать из выбора" : "Выбрать для редактирования"}}', data-toggle='tooltip')
+        i.fa.fa-fw(ng-class='{"fa-square-o": !b.batch, "fa-check-square": b.batch}')
+      button.btn.btn-xs.btn-link(ng-click='bookmarkActions.star(b)', title='{{b.star ? "Убрать из избранного" : "Добавить в избранное"}}', data-toggle='tooltip')
+        i.fa.fa-fw(ng-class='{"fa-star": b.star, "fa-star-o": !b.star}')
+      button.btn.btn-xs.btn-link(ng-click='bookmarkActions.edit(b)', title='Редактировать', data-toggle='tooltip')
+        i.fa.fa-fw.fa-edit
+      button.btn.btn-xs.btn-link(ng-click='bookmarkActions.delete(b.id)', title='Удалить', data-toggle='tooltip')
+        i.fa.fa-fw.fa-trash-o

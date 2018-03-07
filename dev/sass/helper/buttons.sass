@@ -1,0 +1,37 @@
+@mixin button($color, $text: $color-white)
+  &
+    background: $color
+    border-color: $color
+    color: $text
+    &:hover, &:active, &:focus
+      background: darken($color, 10%)
+      color: $text
+
+@mixin button-outline($color, $text: $color-white)
+  &
+    background: transparent
+    border-color: $color
+    color: $color
+    &:hover, &:active, &:focus
+      background: $color
+      color: $text
+
+.btn
+  border-width: 2px
+
+.btn-square
+  border-radius: 0
+
+.btn-outline
+  &.btn-default
+    @include button-outline($color-default)
+  &.btn-primary
+    @include button-outline($color-primary)
+  &.btn-success
+    @include button-outline($color-success)
+  &.btn-info
+    @include button-outline($color-info)
+  &.btn-warning
+    @include button-outline($color-warning)
+  &.btn-danger
+    @include button-outline($color-danger)

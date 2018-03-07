@@ -1,0 +1,19 @@
+@mixin bootColPadding($val)
+  @each $b in $bpnames
+    @for $i from 1 through 12
+      & .col-#{$b}-#{$i}
+        padding:
+          left: $val
+          right: $val
+
+.row-narrow
+  margin:
+    left: -5px
+    right: -5px
+  @include bootColPadding(5px)
+
+.row-wide
+  margin:
+    left: -25px
+    right: -25px
+  @include bootColPadding(25px)

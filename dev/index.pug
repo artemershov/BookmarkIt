@@ -1,0 +1,80 @@
+- var meta = {};
+- meta.title       = 'BookmarkIt';
+- meta.description = 'Сервис для хранения и организации ваших закладок';
+- meta.keywords    = 'загладки, избранное, bookmarks, favorites';
+- meta.url         = 'http://bookmarkit.ru/';
+- meta.lang        = 'ru';
+- meta.locale      = 'ru_RU';
+- meta.image       = 'http://bookmarkit.ru/assets/images/promo.jpg';
+- meta.favicon     = 'http://bookmarkit.ru/assets/images/icon.png';
+- meta.twitter1    = '@artemershovru';
+- meta.twitter2    = '@artemershovru';
+- meta.color       = '#1A242F';
+
+- var min = true;
+
+- var files = {};
+- files.css = ['./assets/app/vendor', './assets/app/main'];
+- files.js  = ['./assets/app/vendor', './assets/app/main', './assets/app/templates'];
+
+doctype
+
+html(itemscope, lang=meta.lang, ng-app='app')
+
+  head
+
+    //- Base tags
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible',                 content='ie=edge')
+    meta(name='viewport',                              content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+
+    base(href='/dist/')
+
+    //- Web metatags
+    title=meta.title
+    meta(name='description',                           content=meta.description)
+    meta(name='keywords',                              content=meta.keywords)
+
+    meta(itemprop='name',                              content=meta.title)
+    meta(itemprop='description',                       content=meta.description)
+    meta(itemprop='image',                             content=meta.image)
+
+    meta(property='og:url',                            content=meta.url)
+    meta(property='og:locale',                         content=meta.locale)
+    meta(property='og:title',                          content=meta.title)
+    meta(property='og:description',                    content=meta.description)
+    meta(property='og:image',                          content=meta.image)
+
+    meta(name='twitter:card',                          content='summary_large_image')
+    meta(name='twitter:site',                          content=meta.twitter1)
+    meta(name='twitter:creator',                       content=meta.twitter2)
+    meta(name='twitter:title',                         content=meta.title)
+    meta(name='twitter:description',                   content=meta.description)
+    meta(name='twitter:image',                         content=meta.image)
+
+    //- App metatags
+    link(rel='manifest',                               href='manifest.json')
+    meta(name='mobile-web-app-capable',                content='yes')
+    meta(name='apple-mobile-web-app-capable',          content='yes')
+    meta(name='application-name',                      content=meta.title)
+    meta(name='apple-mobile-web-app-title',            content=meta.title)
+    meta(name='theme-color',                           content=meta.color)
+    meta(name='msapplication-navbutton-color',         content=meta.color)
+    meta(name='apple-mobile-web-app-status-bar-style', content='black-translucent')
+    meta(name='msapplication-starturl',                content=meta.url)
+
+    //- Icons
+    link(rel='icon',                sizes='192x192',     href=meta.favicon)
+    link(rel='apple-touch-icon',    sizes='192x192',     href=meta.favicon)
+
+    //- Styles
+    each css in files.css
+      link(rel="stylesheet", href=css + ((min) ? '.min.css' : '.css'))
+
+    //- Scripts
+    each js in files.js
+      script(src=js + ((min) ? '.min.js' : '.js'))
+
+  body
+    ng-view
+    loading

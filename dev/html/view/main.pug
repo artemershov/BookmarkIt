@@ -1,0 +1,36 @@
+.app-container.display-flex.flex-column
+
+  .app-header
+    //- Navigation 
+    navigation
+
+  .app-panel.bg-primary-dark
+    //- Groups panel 
+    header-panel.collapse.groups(type='groups', collapse='header.state.groups')
+    //- Settings panel 
+    header-panel.collapse.settings(type='settings', collapse='header.state.settings')
+    //- Bookmark add panel 
+    bookmark-form.collapse(type='add', collapse='header.state.addform')
+    //- Bookmark batch edit panel 
+    bookmark-form.collapse(type='batch', collapse='bookmarkForm.batch.data.selected().length')
+
+  .app-body.no-overflow
+    .app-container.overflow-auto
+      //- Main content 
+      main.bookmark.fs.display-flex.flex-column(ng-class='{"flex-justify-center": location.page == "fav"}')
+        //- Bookmarks group 
+        bookmark-group(ng-if='filteredBookmarks(g.id).length', ng-repeat='g in (settings.current.group ? groups : [null]) track by g.id')
+        //- PLaceholder bookmarks 
+        bookmark-placeholder
+
+//- Bookmark edit form 
+bookmark-form(type='edit')
+
+//- Group list 
+groups
+
+//- Profile modal 
+profile
+
+//- Confirm 
+confirm

@@ -1,0 +1,22 @@
+.bookmark-placeholder.container.padding-sm-v(ng-if='placeholder()')
+  .bg-default.padding-md.text-center(ng-switch='placeholder()')
+
+    div(ng-switch-when='1')
+      i.fa.fa-fw.fa-3x.fa-folder-open-o
+      h3.text-bold.no-margin Нет категорий
+      div Прежде чем добавлять новые закладки создайте хотя бы одну категорию
+
+    div(ng-switch-when='2')
+      i.fa.fa-fw.fa-3x.fa-bookmark-o
+      h3.text-bold.no-margin Нет закладок
+      div Добавьте вашу первую закладку уже сейчас
+
+    div(ng-switch-when='3')
+      i.fa.fa-fw.fa-3x.fa-star-o
+      h3.text-bold.no-margin Нет закладок
+      div Добавьте закладку в избранное чтобы они появились на этой странице
+
+    div(ng-switch-when='4')
+      i.fa.fa-fw.fa-3x.fa-search
+      h3.text-bold.no-margin Ничего не найдено
+      div Поиск не дал результатов. Введите другой поисковой запрос.

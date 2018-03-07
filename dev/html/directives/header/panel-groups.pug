@@ -1,0 +1,44 @@
+.groups.bg-primary-dark.dark-scroll.box-text-white
+  .padding-xs-v
+    .container.header-btn-container
+
+      //- Mobile search 
+      .margin-sm-b.visible-xs-block
+        input.header-input.form-control(ng-model='search', ng-model-debounce='500', type='text', placeholder='Поиск')
+
+      //- Groups header 
+      .row.row-narrow.margin-xs-b
+        .col-xs-6
+          h4.text-bold.no-margin Категории
+        .col-xs-6.text-right
+          a(href='javascript:;', data-toggle='modal', data-target='#groups-edit-modal')
+            i.fa.fa-fw.fa-folder-open.text-muted
+            |  Настроить
+            span.hidden-xs  категории
+
+      //- Groups list 
+      .row.row-narrow
+        .col-xs-12.col-sm-4.col-md-3
+          a.header-btn.btn.btn-block.btn-primary(href='./')
+            .display-table.table-fixed
+              .display-tcell.col-xs-10.no-float.no-padding.text-ellipsis.text-left
+                i.fa.fa-fw.fa-home
+                |  Все закладки
+              .display-tcell.col-xs-2.no-float.no-padding.text-right
+                span.small.text-muted {{bookmarks.length}}
+        .col-xs-12.col-sm-4.col-md-3
+          a.header-btn.btn.btn-block.btn-primary(href='fav')
+            .display-table.table-fixed
+              .display-tcell.col-xs-10.no-float.no-padding.text-ellipsis.text-left
+                i.fa.fa-fw.fa-star
+                |  Избранное
+              .display-tcell.col-xs-2.no-float.no-padding.text-right
+                span.small.text-muted {{(bookmarks | filter:{star:1}).length}}
+        .col-xs-12.col-sm-4.col-md-3(ng-repeat='g in groups track by g.id')
+          a.header-btn.btn.btn-block.btn-primary(href='group/{{g.id}}')
+            .display-table.table-fixed
+              .display-tcell.col-xs-10.no-float.no-padding.text-ellipsis.text-left
+                i.fa.fa-fw.fa-folder
+                |  {{g.title}}
+              .display-tcell.col-xs-2.no-float.no-padding.text-right
+                span.small.text-muted {{(bookmarks | filter:{gid: g.id}).length}}

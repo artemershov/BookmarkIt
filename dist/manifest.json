@@ -1,0 +1,23 @@
+{
+  "name": "BookmarkIt",
+  "short_name": "BookmarkIt",
+  "lang": "ru",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#1a242f",
+  "icons": [
+    {
+      "src": "assets/images/icon.svg"
+    },
+    {
+      "src": "assets/images/icon.png",
+      "sizes": "1024x1024"
+    }
+  ],
+  "background_color": "#1a242f",
+  "related_applications": [
+    {
+      "platform": "web"
+    }
+  ]
+}

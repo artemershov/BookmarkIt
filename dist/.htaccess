@@ -1,0 +1,40 @@
+<IfModule mod_rewrite.c>
+
+  # Enable Rewrite Engine
+  RewriteEngine On
+  RewriteBase /dist
+
+  # Map urls to index.html
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_METHOD} !OPTIONS
+  RewriteRule ^(.*)$ index.html [L]
+
+</IfModule>
+
+
+<IfModule mod_headers.c>
+
+  # Caching schema
+  <FilesMatch "\.(js|css|html|svg|jpg|jpeg|png)$">
+    Header set Cache-Control "max-age=604800, public"
+  </FilesMatch>
+
+</IfModule>
+
+# Password Protect file
+<Files "sqlite.db">
+  AuthName "Prompt"
+  AuthType Basic
+  AuthUserFile ".htpasswd"
+  Require valid-user
+</Files>
+
+# Prevent viewing of .htaccess file
+<Files ".htaccess">
+  order allow,deny
+  deny from all
+</Files>
+
+# Prevent directory listings
+Options All -Indexes
