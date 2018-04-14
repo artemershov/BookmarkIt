@@ -1,0 +1,5 @@
+dist/assets
+dist/server/database.db
+dist/index.html
+node_modules
+yarn.lock
