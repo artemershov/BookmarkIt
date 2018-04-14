@@ -4,9 +4,8 @@
     public static function get($url) {
 
       $useragent = $_SERVER['HTTP_USER_AGENT'];
-      $lang = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
-
-      $headers = [];
+      $lang      = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+      $headers   = [];
 
       $ch = curl_init();
       curl_setopt($ch, CURLOPT_URL, $url);
@@ -50,8 +49,6 @@
 
     }
     public static function meta($url) {
-
-      require_once ROOT . '/vendor/simple_html_dom.php';
 
       $curl = self::get($url);
 
@@ -188,8 +185,6 @@
     }
     public static function image($url, $html = null) {
 
-      require_once ROOT . '/vendor/simple_html_dom.php';
-
       if (empty($html)) {
         $html = self::get($url);
         $html = str_get_html($html['content']);
@@ -230,7 +225,7 @@
       if (!(preg_match('/^http.*/', $src) || preg_match('/^\/\/.*/', $src))) {
 
         $u = parse_url($url);
-        $http = (isset($u['scheme']) && !empty($u['scheme'])) ? $u['scheme'] : '';
+        $http = (isset($u['scheme']) && !empty($u['scheme'])) ? $u['scheme'] : 'http';
         $host = (isset($u['host'])   && !empty($u['host']))   ? $u['host']   : '';
         $path = (isset($u['path'])   && !empty($u['path']))   ? $u['path']   : '';
 

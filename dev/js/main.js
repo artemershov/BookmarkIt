@@ -39,8 +39,16 @@ angular.module('app', ['ngRoute', 'dndLists']).config(['$routeProvider', '$locat
 
 }]);
 
-angular.module('app').run(['$rootScope', $rootScope => {
-  $rootScope.$on('$routeChangeStart', () => {
+angular.module('app').run(['$rootScope', 'cookie', 'route', ($rootScope, cookie, route) => {
+  $rootScope.$on('$routeChangeStart', (event, next) => {
+    if (!cookie.get() && next.originalPath !== '/auth') {
+      event.preventDefault();
+      route.set('/auth');
+      $rootScope.error = 'Not authorized';
+    } else if (cookie.get() && next.originalPath == '/auth') {
+      event.preventDefault();
+      route.set('/');
+    }
     window.scrollTo(0, 0);
     popupReset();
   });
