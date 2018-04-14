@@ -1,9 +1,14 @@
 {
+
   "name": "bookmarkIt",
-  "version": "1.0.0",
-  "main": "index.js",
+  "title": "BookmarkIt",
+  "description": "Сервис для хранения и организации ваших закладок",
+  "keywords": "загладки, избранное, bookmarks, favorites",
+  "version": "1.1.0",
   "author": "Artem Ershov",
   "license": "ISC",
+
+  "main": "index.js",
   "eslintConfig": {
     "env": {
       "browser": true,
@@ -111,4 +116,5 @@
       ]
     }
   }
+
 }

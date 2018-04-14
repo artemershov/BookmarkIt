@@ -1,21 +1,15 @@
 - var meta = {};
-- meta.title       = 'BookmarkIt';
-- meta.description = 'Сервис для хранения и организации ваших закладок';
-- meta.keywords    = 'загладки, избранное, bookmarks, favorites';
-- meta.url         = 'http://bookmarkit.ru/';
+- meta.title       = locals.meta.title;
+- meta.description = locals.meta.description;
+- meta.keywords    = locals.meta.keywords;
 - meta.lang        = 'ru';
 - meta.locale      = 'ru_RU';
-- meta.image       = 'http://bookmarkit.ru/assets/images/promo.jpg';
-- meta.favicon     = 'http://bookmarkit.ru/assets/images/icon.png';
-- meta.twitter1    = '@artemershovru';
-- meta.twitter2    = '@artemershovru';
-- meta.color       = '#1A242F';
-
-- var min = true;
-
-- var files = {};
-- files.css = ['./assets/app/vendor', './assets/app/main'];
-- files.js  = ['./assets/app/vendor', './assets/app/main', './assets/app/templates'];
+- meta.url         = locals.path.url + locals.path.base;
+- meta.image       = meta.url + '/assets/images/promo.jpg';
+- meta.favicon     = meta.url + '/assets/images/icon.png';
+- meta.twitter1    = '';
+- meta.twitter2    = '';
+- meta.color       = '#FFFFFF';
 
 doctype
 
@@ -28,7 +22,7 @@ html(itemscope, lang=meta.lang, ng-app='app')
     meta(http-equiv='X-UA-Compatible',                 content='ie=edge')
     meta(name='viewport',                              content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
 
-    base(href='/dist/')
+    base(href=locals.path.base)
 
     //- Web metatags
     title=meta.title
@@ -64,16 +58,17 @@ html(itemscope, lang=meta.lang, ng-app='app')
     meta(name='msapplication-starturl',                content=meta.url)
 
     //- Icons
-    link(rel='icon',                sizes='192x192',     href=meta.favicon)
-    link(rel='apple-touch-icon',    sizes='192x192',     href=meta.favicon)
+    link(rel='icon',                sizes='96x96',     href=meta.favicon)
+    link(rel='apple-touch-icon',    sizes='96x96',     href=meta.favicon)
 
     //- Styles
-    each css in files.css
-      link(rel="stylesheet", href=css + ((min) ? '.min.css' : '.css'))
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=PT+Sans:400,700&amp;subset=cyrillic,cyrillic-ext')
+    each css in locals.files.css
+      link(rel='stylesheet', href=css)
 
     //- Scripts
-    each js in files.js
-      script(src=js + ((min) ? '.min.js' : '.js'))
+    each js in locals.files.js
+      script(src=js)
 
   body
     ng-view

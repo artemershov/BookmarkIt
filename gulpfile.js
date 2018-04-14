@@ -31,6 +31,7 @@ const srcmap   = require('gulp-sourcemaps');
 // Modules: Other
 const yarn     = require('main-yarn-files');
 const browser  = require('browser-sync').create();
+// const history  = require('connect-history-api-fallback');
 
 // Modules: HTML
 const pug      = require('gulp-pug');
@@ -51,6 +52,8 @@ const jpegcomp = require('imagemin-jpeg-recompress');
 
 // Config ==================================================
 
+const packageJson = require('./package.json');
+
 // Compile config
 const param = {
   map:   false,
@@ -62,21 +65,25 @@ const param = {
 const path = {
   src: {
     base:    './dev/',
-    js:      './dev/js/',
-    sass:    './dev/sass/',
-    images:  './dev/images/',
-    fonts:   './dev/fonts/',
-    html:    './dev/html/',
+    js:      '/js/',
+    sass:    '/sass/',
+    images:  '/images/',
+    fonts:   '/fonts/',
+    html:    '/html/',
   },
   dest: {
     base:   './dist/',
-    assets: './dist/assets/',
-    js:     './dist/assets/app/',
-    css:    './dist/assets/app/',
-    html:   './dist/assets/app/',
-    vendor: './dist/assets/app/',
-    images: './dist/assets/images/',
-    fonts:  './dist/assets/fonts/',
+    assets: '/assets/',
+    js:     '/assets/app/',
+    css:    '/assets/app/',
+    html:   '/assets/app/',
+    vendor: '/assets/app/',
+    images: '/assets/images/',
+    fonts:  '/assets/fonts/',
+  },
+  server: {
+    base: '/BookmarkIt/dist/',
+    url: 'http://localhost/',
   },
   map: 'maps',
 };
@@ -94,7 +101,15 @@ const file = {
 
 // Browser Sync config
 const bsConfig = {
-  proxy: 'http://localhost/dist',
+  // // Start server
+  // server: {
+  //   baseDir: path.dest.base,
+  //   middleware: [history()]
+  // },
+
+  // Use existing server
+  proxy: path.server.url + path.server.base,
+
   snippetOptions: {
     rule: {
       match: /<\/head>/i,
@@ -127,7 +142,7 @@ const getYarn = () => yarn({
 
 // Compile app
 gulp.task('compile:app:js', () =>
-  gulp.src(path.src.js + '**/*.js')
+  gulp.src(path.src.base + path.src.js + '**/*.js')
     .pipe(errHandler('JS'))
     .pipe(gulpif(param.debug, debug({title: 'JS'})))
     .pipe(cached('compile:app:js'))
@@ -136,12 +151,12 @@ gulp.task('compile:app:js', () =>
     .pipe(gulpif(param.min, uglify()))
     .pipe(remember('compile:app:js'))
     .pipe(concat(file.app.js))
-    .pipe(gulpif(param.min, rename({suffix: '.min'})))
-    .pipe(gulpif(param.map, srcmap.write(path.map, {sourceRoot: path.src.js})))
-    .pipe(gulp.dest(path.dest.js))
+    // .pipe(gulpif(param.min, rename({suffix: '.min'})))
+    .pipe(gulpif(param.map, srcmap.write(path.map, {sourceRoot: path.src.base + path.src.js})))
+    .pipe(gulp.dest(path.dest.base + path.dest.js))
 );
 gulp.task('compile:app:css', () =>
-  gulp.src(path.src.sass + 'main.sass')
+  gulp.src(path.src.base + path.src.sass + 'main.sass')
     .pipe(errHandler('SASS'))
     .pipe(gulpif(param.debug, debug({title: 'SASS'})))
     .pipe(gulpif(param.map, srcmap.init()))
@@ -150,15 +165,15 @@ gulp.task('compile:app:css', () =>
     .pipe(gulpif(param.min, cleancss()))
     .pipe(remember('compile:app:css'))
     .pipe(rename(file.app.css))
-    .pipe(gulpif(param.min, rename({suffix: '.min'})))
-    .pipe(gulpif(param.map, srcmap.write(path.map, {sourceRoot: path.src.sass})))
-    .pipe(gulp.dest(path.dest.css))
+    // .pipe(gulpif(param.min, rename({suffix: '.min'})))
+    .pipe(gulpif(param.map, srcmap.write(path.map, {sourceRoot: path.src.base + path.src.sass})))
+    .pipe(gulp.dest(path.dest.base + path.dest.css))
 );
 gulp.task('compile:app:img', () =>
-  gulp.src(path.src.images + '**/*')
+  gulp.src(path.src.base + path.src.images + '**/*')
     .pipe(errHandler('IMG'))
     .pipe(gulpif(param.debug, debug({title: 'IMG'})))
-    .pipe(newer(path.dest.images))
+    .pipe(newer(path.dest.base + path.dest.images))
     .pipe(imagemin([
       jpegcomp(),
       imagemin.jpegtran({progressive: true}),
@@ -171,10 +186,10 @@ gulp.task('compile:app:img', () =>
         ]
       })
     ]))
-    .pipe(gulp.dest(path.dest.images))
+    .pipe(gulp.dest(path.dest.base + path.dest.images))
 );
 gulp.task('compile:app:html', () =>
-  gulp.src(path.src.html + '**/*.pug')
+  gulp.src(path.src.base + path.src.html + '**/*.pug')
     .pipe(errHandler('HTML'))
     .pipe(gulpif(param.debug, debug({title: 'HTML'})))
     .pipe(cached('compile:app:html'))
@@ -187,23 +202,44 @@ gulp.task('compile:app:html', () =>
     .pipe(gulpif(param.min, uglify()))
     .pipe(remember('compile:app:html'))
     .pipe(concat(file.app.html))
-    .pipe(gulpif(param.min, rename({suffix: '.min'})))
-    .pipe(gulpif(param.map, srcmap.write(path.map, {sourceRoot: path.src.html})))
-    .pipe(gulp.dest(path.dest.html))
+    // .pipe(gulpif(param.min, rename({suffix: '.min'})))
+    .pipe(gulpif(param.map, srcmap.write(path.map, {sourceRoot: path.src.base + path.src.html})))
+    .pipe(gulp.dest(path.dest.base + path.dest.html))
 );
 gulp.task('compile:app:fonts', () =>
-  gulp.src(path.src.fonts + '**/*')
+  gulp.src(path.src.base + path.src.fonts + '**/*')
     .pipe(errHandler('Fonts'))
     .pipe(gulpif(param.debug, debug({title: 'Fonts'})))
-    .pipe(newer(path.dest.fonts))
-    .pipe(gulp.dest(path.dest.fonts))
+    .pipe(newer(path.dest.base + path.dest.fonts))
+    .pipe(gulp.dest(path.dest.base + path.dest.fonts))
 );
 gulp.task('compile:app:index', () =>
   gulp.src(path.src.base + 'index.pug')
     .pipe(errHandler('Index'))
     .pipe(gulpif(param.debug, debug({title: 'Index'})))
     .pipe(cached('compile:app:index'))
-    .pipe(pug({pretty: !param.min}))
+    .pipe(pug({
+      pretty: !param.min,
+      data: {
+        meta: {
+          title:       packageJson.title,
+          description: packageJson.description,
+          keywords:    packageJson.keywords,
+        },
+        path: path.server,
+        files: {
+          css: [
+            path.server.base + path.dest.vendor + file.vendor.css,
+            path.server.base + path.dest.css    + file.app.css,
+          ],
+          js: [
+            path.server.base + path.dest.vendor + file.vendor.js,
+            path.server.base + path.dest.js     + file.app.js,
+            path.server.base + path.dest.html   + file.app.html,
+          ],
+        }
+      },
+    }))
     .pipe(remember('compile:app:index'))
     .pipe(gulp.dest(path.dest.base))
 );
@@ -225,9 +261,9 @@ gulp.task('compile:vendor:js', () =>
     .pipe(gulpif(param.map, srcmap.init()))
     .pipe(concat(file.vendor.js))
     .pipe(gulpif(param.min, uglify()))
-    .pipe(gulpif(param.min, rename({suffix: '.min'})))
+    // .pipe(gulpif(param.min, rename({suffix: '.min'})))
     .pipe(gulpif(param.map, srcmap.write(path.map, {sourceRoot: './vendor/js/'})))
-    .pipe(gulp.dest(path.dest.vendor))
+    .pipe(gulp.dest(path.dest.base + path.dest.vendor))
 );
 gulp.task('compile:vendor:css', () =>
   gulp.src(getYarn())
@@ -237,17 +273,17 @@ gulp.task('compile:vendor:css', () =>
     .pipe(gulpif(param.map, srcmap.init()))
     .pipe(concat(file.vendor.css))
     .pipe(gulpif(param.min, cleancss()))
-    .pipe(gulpif(param.min, rename({suffix: '.min'})))
+    // .pipe(gulpif(param.min, rename({suffix: '.min'})))
     .pipe(gulpif(param.map, srcmap.write(path.map, {sourceRoot: './vendor/css/'})))
-    .pipe(gulp.dest(path.dest.vendor))
+    .pipe(gulp.dest(path.dest.base + path.dest.vendor))
 );
 gulp.task('compile:vendor:fonts', () =>
   gulp.src(getYarn())
     .pipe(errHandler('Vendor Fonts'))
     .pipe(gulpif(param.debug, debug({title: 'Vendor Fonts'})))
     .pipe(filter('**/fonts/*'))
-    .pipe(newer(path.dest.fonts))
-    .pipe(gulp.dest(path.dest.fonts))
+    .pipe(newer(path.dest.base + path.dest.fonts))
+    .pipe(gulp.dest(path.dest.base + path.dest.fonts))
 );
 gulp.task('compile:vendor', [
   'compile:vendor:js',
@@ -264,27 +300,27 @@ gulp.task('compile', [
 // Clean ===================================================
 
 gulp.task('clean:js', () =>
-  gulp.src(path.dest.js + '*', {read: false})
+  gulp.src(path.dest.base + path.dest.js + '*', {read: false})
     .pipe(errHandler('Clean JS'))
     .pipe(clean({force: true}))
 );
 gulp.task('clean:css', () =>
-  gulp.src(path.dest.css + '*', {read: false})
+  gulp.src(path.dest.base + path.dest.css + '*', {read: false})
     .pipe(errHandler('Clean CSS'))
     .pipe(clean({force: true}))
 );
 gulp.task('clean:img', () =>
-  gulp.src(path.dest.images + '*', {read: false})
+  gulp.src(path.dest.base + path.dest.images + '*', {read: false})
     .pipe(errHandler('Clean IMG'))
     .pipe(clean({force: true}))
 );
 gulp.task('clean:html', () =>
-  gulp.src(path.dest.html + '*', {read: false})
+  gulp.src(path.dest.base + path.dest.html + '*', {read: false})
     .pipe(errHandler('Clean HTML'))
     .pipe(clean({force: true}))
 );
 gulp.task('clean:fonts', () =>
-  gulp.src(path.dest.fonts + '*', {read: false})
+  gulp.src(path.dest.base + path.dest.fonts + '*', {read: false})
     .pipe(errHandler('Clean Fonts'))
     .pipe(clean({force: true}))
 );
@@ -294,7 +330,7 @@ gulp.task('clean:index', () =>
     .pipe(clean({force: true}))
 );
 gulp.task('clean:vendor', () =>
-  gulp.src(path.dest.vendor + '*', {read: false})
+  gulp.src(path.dest.base + path.dest.vendor + '*', {read: false})
     .pipe(errHandler('Clean Vendor'))
     .pipe(clean({force: true}))
 );
@@ -313,10 +349,10 @@ gulp.task('clean', [
 // Watch ===================================================
 
 gulp.task('watch:compile', () => {
-  gulp.watch(path.src.js     + '**/*',      ['compile:app:js']);
-  gulp.watch(path.src.sass   + '**/*',      ['compile:app:css']);
-  gulp.watch(path.src.images + '**/*',      ['compile:app:img']);
-  gulp.watch(path.src.html   + '**/*',      ['compile:app:html']);
+  gulp.watch(path.src.base + path.src.js     + '**/*', ['compile:app:js']);
+  gulp.watch(path.src.base + path.src.sass   + '**/*', ['compile:app:css']);
+  gulp.watch(path.src.base + path.src.images + '**/*', ['compile:app:img']);
+  gulp.watch(path.src.base + path.src.html   + '**/*', ['compile:app:html']);
   gulp.watch(path.src.base   + 'index.pug', ['compile:app:index']);
 });
 gulp.task('watch:browser', () => {

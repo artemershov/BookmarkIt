@@ -9,26 +9,21 @@ A service for storing and organizing your bookmarks.
 3. Install dependencies: `yarn install`
 2. Run `gulp`
 
-## Path
+## Path variables
 
-**dev/index.pug** (base path for angular framework)
-```
-base(href='/dist/')
+**server/index.php** (path of server folder)
+```php
+defined("PATH") or define("PATH", "/server");
 ```
 
-**dist/.htaccess** (base path for apache server)
-```
-<IfModule mod_rewrite.c>
+**gulpfile.js**
+```js
+const path = {
   ...
-  RewriteBase /dist
-  ...
-</IfModule>
-```
-
-**gulpfile.js** (base path for BrowserSync)
-```
-const bsConfig = {
-  proxy: 'http://localhost/dist',
+  server: {
+    base: '/',
+    url: 'http://localhost',
+  },
   ...
 };
 ```
