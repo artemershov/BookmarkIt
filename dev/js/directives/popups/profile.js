@@ -14,7 +14,10 @@ angular.module('app').directive('profile', ['ajaxAPI', (ajaxAPI) => ({
       submit: () => {
         passForm.alert = 0;
         passForm.loading = true;
-        if (passForm.data.new !== passForm.data.re) passForm.alert = 3;
+        if (passForm.data.new !== passForm.data.re) {
+          passForm.loading = false;
+          passForm.alert = 3;
+        }
         if (passForm.alert == 0) ajaxAPI.user.passChange(passForm.data).then(r => {
           passForm.loading = false;
           passForm.alert = r;
