@@ -1,4 +1,6 @@
-angular.module('app').filter('bookmarksReorderFilter', () => (input, from, to) => {
+/* global app */
+
+app.filter('bookmarksReorderFilter', () => (input, from, to) => {
   let out = [];
   if (input) {
     let i = input.length;

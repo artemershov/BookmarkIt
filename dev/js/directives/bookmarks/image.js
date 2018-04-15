@@ -1,4 +1,6 @@
-angular.module('app').directive('bookmarkImage', ['$filter', ($filter) => ({
+/* global app */
+
+app.directive('bookmarkImage', ['$filter', ($filter) => ({
   restrict: 'EA',
   replace: true,
   scope: {
@@ -72,7 +74,6 @@ angular.module('app').directive('bookmarkImage', ['$filter', ($filter) => ({
       }
     };
 
-    // TODO: replace document.font
     const param = i => {
       if (!i) {
         canvas.font = {

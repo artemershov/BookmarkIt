@@ -1,6 +1,6 @@
-/* global popupReset */
+/* global app, popupReset */
 
-angular.module('app').directive('navigation', () => ({
+app.directive('navigation', ['AppName', (AppName) => ({
   restrict: 'EA',
   replace: true,
   link: ($scope, element) => {
@@ -34,7 +34,8 @@ angular.module('app').directive('navigation', () => ({
 
     // Assign
     $scope.header = header;
+    $scope.appname = AppName;
 
   },
   templateUrl: 'directives/header/main.html',
-}));
+})]);

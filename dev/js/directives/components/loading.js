@@ -1,4 +1,6 @@
-angular.module('app').directive('loading', ['$rootScope', ($rootScope) => ({
+/* global app */
+
+app.directive('loading', ['$rootScope', ($rootScope) => ({
   restrict: 'E',
   link: ($scope, element) => {
 

@@ -1,6 +1,6 @@
-/* global Notify, popupReset */
+/* global app, Notify, popupReset */
 
-angular.module('app').directive('bookmark', ['ajaxAPI', '$filter', 'messages', (ajaxAPI, $filter, messages) => ({
+app.directive('bookmark', ['ajaxAPI', '$filter', 'messages', (ajaxAPI, $filter, messages) => ({
   restrict: 'EA',
   link: ($scope, element, attrs) => {
 
@@ -24,7 +24,7 @@ angular.module('app').directive('bookmark', ['ajaxAPI', '$filter', 'messages', (
           }
         });
       },
-      // TODO: Reorder
+
       reorder: (a, f, t) => {
 
         // Fix

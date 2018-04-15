@@ -1,4 +1,6 @@
-angular.module('app').factory('route', ['$routeParams', '$location', ($routeParams, $location) => {
+/* global app */
+
+app.factory('route', ['$routeParams', '$location', ($routeParams, $location) => {
 
   const route = {
     get: () => ({

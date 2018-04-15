@@ -1,6 +1,6 @@
-/* global Notify */
+/* global app, Notify */
 
-angular.module('app').directive('groups', ['ajaxAPI', '$filter', 'route', 'messages', (ajaxAPI, $filter, route, messages) => ({
+app.directive('groups', ['ajaxAPI', '$filter', 'route', 'messages', (ajaxAPI, $filter, route, messages) => ({
   restrict: 'EA',
   replace: true,
   link: ($scope) => {

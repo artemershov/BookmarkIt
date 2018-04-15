@@ -1,4 +1,6 @@
-angular.module('app').directive('bookmarkPlaceholder', ['route', (route) => ({
+/* global app */
+
+app.directive('bookmarkPlaceholder', ['route', (route) => ({
   restrict: 'EA',
   replace: true,
   link: ($scope) => {

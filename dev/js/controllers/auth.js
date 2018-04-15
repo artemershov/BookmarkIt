@@ -1,10 +1,6 @@
-angular.module('app').controller('AuthController', ['$scope', 'route', 'cookie', 'ajaxAPI', ($scope, route, cookie, ajaxAPI) => {
+/* global app */
 
-  // If logined redirect
-  if (cookie.get()) {
-    route.set('/');
-    return false;
-  }
+app.controller('AuthController', ['$scope', 'route', 'ajaxAPI', 'AppName', ($scope, route, ajaxAPI, AppName) => {
 
   const form = {
     login: {
@@ -56,5 +52,6 @@ angular.module('app').controller('AuthController', ['$scope', 'route', 'cookie',
   };
 
   $scope.form = form;
+  $scope.appname = AppName;
 
 }]);

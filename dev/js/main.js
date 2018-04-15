@@ -1,6 +1,7 @@
-/* global popupReset */
+/* global Cookie, popupReset */
 
-angular.module('app', ['ngRoute', 'dndLists']).config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) => {
+const app = angular.module('app', ['ngRoute', 'dndLists']);
+app.config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) => {
 
   $locationProvider.html5Mode(true);
 
@@ -39,12 +40,14 @@ angular.module('app', ['ngRoute', 'dndLists']).config(['$routeProvider', '$locat
 
 }]);
 
-angular.module('app').run(['$rootScope', 'cookie', 'route', ($rootScope, cookie, route) => {
+app.constant('AppName', 'BookmarkIt');
+
+app.run(['$rootScope', 'route', 'AppName', ($rootScope, route, AppName) => {
+  let cookie = new Cookie(AppName);
   $rootScope.$on('$routeChangeStart', (event, next) => {
     if (!cookie.get() && next.originalPath !== '/auth') {
       event.preventDefault();
       route.set('/auth');
-      $rootScope.error = 'Not authorized';
     } else if (cookie.get() && next.originalPath == '/auth') {
       event.preventDefault();
       route.set('/');

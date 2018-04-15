@@ -1,4 +1,6 @@
-angular.module('app').controller('MainController', ['$scope', 'route', '$filter', 'settings', 'data', ($scope, route, $filter, settings, data) => {
+/* global app */
+
+app.controller('MainController', ['$scope', 'route', '$filter', 'settings', 'data', ($scope, route, $filter, settings, data) => {
 
   // Routing
   const loc = route.get();

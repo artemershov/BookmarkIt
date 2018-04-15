@@ -1,6 +1,6 @@
-/* global Notify, popupReset, fontAwesome */
+/* global app, Notify, popupReset, fontAwesome */
 
-angular.module('app').directive('bookmarkForm', ['ajaxAPI', 'route', '$filter', 'messages', (ajaxAPI, route, $filter, messages) => ({
+app.directive('bookmarkForm', ['ajaxAPI', 'route', '$filter', 'messages', (ajaxAPI, route, $filter, messages) => ({
   restrict: 'EA',
   replace: true,
   link: ($scope, element, attrs) => {

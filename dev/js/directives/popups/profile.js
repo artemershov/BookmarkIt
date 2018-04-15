@@ -1,4 +1,6 @@
-angular.module('app').directive('profile', ['ajaxAPI', (ajaxAPI) => ({
+/* global app */
+
+app.directive('profile', ['ajaxAPI', (ajaxAPI) => ({
   restrict: 'EA',
   replace: true,
   link: ($scope, element) => {

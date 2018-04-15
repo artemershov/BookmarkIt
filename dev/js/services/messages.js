@@ -1,4 +1,6 @@
-angular.module('app').constant('messages', {
+/* global app */
+
+app.constant('messages', {
   error:       'Возникла ошибка. Попробуйте обновить страницу или зайти позже',
   bookmarks: {
     success: {

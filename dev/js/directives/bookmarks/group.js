@@ -1,4 +1,6 @@
-angular.module('app').directive('bookmarkGroup', ['$timeout', 'route', ($timeout, route) => ({
+/* global app */
+
+app.directive('bookmarkGroup', ['$timeout', 'route', ($timeout, route) => ({
   restrict: 'EA',
   replace: true,
   link: ($scope) => {

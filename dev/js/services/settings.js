@@ -1,4 +1,6 @@
-angular.module('app').constant('defaultSettings', {
+/* global app */
+
+app.constant('defaultSettings', {
   global: {
     newtab: true,
     search: false,
@@ -20,7 +22,7 @@ angular.module('app').constant('defaultSettings', {
   group: {},
 });
 
-angular.module('app').factory('settings', ['defaultSettings', (defaultSettings) => {
+app.factory('settings', ['defaultSettings', (defaultSettings) => {
 
   let ls = new Storage('settings');
   let storage = ls.get() || defaultSettings;

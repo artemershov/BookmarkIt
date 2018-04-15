@@ -1,17 +1,21 @@
-angular.module('app').filter('bookmarksSearch', () => (input, query) => {
+/* global app */
 
-  // TODO: toLowercase
+app.filter('bookmarksSearch', () => (input, query) => {
+
   if (query) {
+
+    query = query.toLowerCase();
 
     let out = [];
     let i = input.length;
+
     while (i--) {
       let b = input[i];
-      if (b.title && b.title.indexOf(query) !== -1) {
+      if (b.title && b.title.toLowerCase().indexOf(query) !== -1) {
         out.push(b);
-      } else if (b.text && b.text.indexOf(query) !== -1) {
+      } else if (b.text && b.text.toLowerCase().indexOf(query) !== -1) {
         out.push(b);
-      } else if (b.link && b.link.indexOf(query) !== -1) {
+      } else if (b.link && b.link.toLowerCase().indexOf(query) !== -1) {
         out.push(b);
       }
     }

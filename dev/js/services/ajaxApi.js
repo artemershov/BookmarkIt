@@ -1,6 +1,6 @@
-/* global Notify */
+/* global app, Notify */
 
-angular.module('app').factory('ajaxAPI', ['$http', '$q', '$filter', 'route', 'messages', ($http, $q, $filter, route, messages) => {
+app.factory('ajaxAPI', ['$http', '$q', '$filter', 'route', 'messages', ($http, $q, $filter, route, messages) => {
 
   let storage = null;
   const ajax = (a, d = {}) => {
@@ -55,9 +55,10 @@ angular.module('app').factory('ajaxAPI', ['$http', '$q', '$filter', 'route', 'me
         bookmarks: factory.bookmarks.get(),
       }).then(data => {
         if (data.groups && data.bookmarks) {
-          storage = {};
-          storage.groups    = $filter('orderBy')(data.groups, 'pos');
-          storage.bookmarks = data.bookmarks;
+          storage = {
+            groups:    $filter('orderBy')(data.groups, 'pos'),
+            bookmarks: data.bookmarks,
+          };
         } else {
           storage = null;
         }

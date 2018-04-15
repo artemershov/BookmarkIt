@@ -1,4 +1,6 @@
-angular.module('app').directive('collapse', () => ({
+/* global app */
+
+app.directive('collapse', () => ({
   restrict: 'A',
   link: ($scope, element, attrs) => {
     $scope.$watchCollection(attrs.collapse, (state) => {

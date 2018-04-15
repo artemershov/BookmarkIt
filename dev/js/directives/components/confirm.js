@@ -1,4 +1,6 @@
-angular.module('app').directive('confirm', () => ({
+/* global app */
+
+app.directive('confirm', () => ({
   restrict: 'E',
   link: ($scope, element) => {
     const confirmObj = {
