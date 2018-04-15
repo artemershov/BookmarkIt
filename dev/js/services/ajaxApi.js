@@ -44,7 +44,10 @@ app.factory('ajaxAPI', ['$http', '$q', '$filter', 'route', 'messages', ($http, $
       delete:     pass       => ajax('user/delete',       pass),
       logoutAll:  ()         => ajax('user/revoke'),
       logout:     ()         => ajax('user/signout').then(r => {
-        if (r) route.set('/auth');
+        if (r) {
+          route.set('/auth');
+          storage = null;
+        }
       }),
     },
 
