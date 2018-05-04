@@ -1,5 +1,4 @@
 {
-
   "name": "bookmarkIt",
   "title": "BookmarkIt",
   "description": "Сервис для хранения и организации ваших закладок",
@@ -7,7 +6,6 @@
   "version": "1.1.0",
   "author": "Artem Ershov",
   "license": "ISC",
-
   "main": "index.js",
   "eslintConfig": {
     "env": {
@@ -50,6 +48,7 @@
     "gulp-autoprefixer": "^4.1.0",
     "gulp-babel": "^7.0.0",
     "gulp-cached": "^1.1.1",
+    "gulp-chokidar": "0.0.5",
     "gulp-clean": "^0.3.2",
     "gulp-clean-css": "^3.9.2",
     "gulp-concat": "^2.6.1",
@@ -116,5 +115,4 @@
       ]
     }
   }
-
 }

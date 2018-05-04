@@ -6,8 +6,8 @@ A service for storing and organizing your bookmarks.
 ## Buid
 1. Open console
 2. `cd` to project folder
-3. Install dependencies: `yarn install`
-2. Run `gulp`
+3. Install dependencies: `npm i`
+2. Run `npx gulp`
 
 ## Path variables
 

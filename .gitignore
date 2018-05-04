@@ -2,4 +2,5 @@ dist/assets
 dist/server/database.db
 dist/index.html
 node_modules
+package-lock.json
 yarn.lock

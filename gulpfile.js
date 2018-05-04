@@ -8,6 +8,7 @@
 const gulp     = require('gulp');
 const gulpif   = require('gulp-if');
 const sequence = require('run-sequence');
+const watch    = require('gulp-chokidar')(gulp);
 
 // Modules: Debug
 const debug    = require('gulp-debug');
@@ -349,11 +350,11 @@ gulp.task('clean', [
 // Watch ===================================================
 
 gulp.task('watch:compile', () => {
-  gulp.watch(path.src.base + path.src.js     + '**/*', ['compile:app:js']);
-  gulp.watch(path.src.base + path.src.sass   + '**/*', ['compile:app:css']);
-  gulp.watch(path.src.base + path.src.images + '**/*', ['compile:app:img']);
-  gulp.watch(path.src.base + path.src.html   + '**/*', ['compile:app:html']);
-  gulp.watch(path.src.base   + 'index.pug', ['compile:app:index']);
+  watch(path.src.base + path.src.js     + '**/*', ['compile:app:js']);
+  watch(path.src.base + path.src.sass   + '**/*', ['compile:app:css']);
+  watch(path.src.base + path.src.images + '**/*', ['compile:app:img']);
+  watch(path.src.base + path.src.html   + '**/*', ['compile:app:html']);
+  watch(path.src.base   + 'index.pug',            ['compile:app:index']);
 });
 gulp.task('watch:browser', () => {
   browser.watch([
