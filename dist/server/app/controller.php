@@ -144,6 +144,10 @@
     public static function unsetCookie() {
       setcookie(APPNAME, "", time() - 3600, "/");
     }
+    public static function updateCookie() {
+      $token = self::getCookie();
+      self::setCookie($token);
+    }
     public static function getUID() {
       $token = self::getCookie();
       if ($token) {

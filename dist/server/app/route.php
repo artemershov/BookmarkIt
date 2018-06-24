@@ -3,6 +3,7 @@
   $router = new AltoRouter();
   $router->setBasePath(PATH);
   if (Session::getUID()) {
+    Session::updateCookie();
     $routes = [
       ["POST", "/bookmarks/get",     "Bookmarks::get"    ],
       ["POST", "/bookmarks/add",     "Bookmarks::add"    ],
