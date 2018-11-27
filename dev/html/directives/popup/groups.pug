@@ -11,29 +11,29 @@
 
       .modal-body.bg-light
 
-        //- Groups list 
+        //- Groups list
         ul.group-list.list-group.no-margin(
-          ng-if='groups.length', 
-          dnd-list='groups', 
+          ng-if='groups.length',
+          dnd-list='groups',
           dnd-allowed-types='["group"]'
-          dnd-drop='callback({to: index})', 
+          dnd-drop='callback({to: index})',
         )
 
-          //- Group item 
+          //- Group item
           li.list-group-item(
-            ng-repeat='g in groups track by g.id', 
-            dnd-disable-if='g.edit', 
-            dnd-draggable='g', 
-            dnd-type='"group"', 
+            ng-repeat='g in groups track by g.id',
+            dnd-disable-if='g.edit',
+            dnd-draggable='g',
+            dnd-type='"group"',
             dnd-callback='groupform.actions.reorder(g, $index, to)'
           )
 
             .group-item.display-table.table-fixed.table-valign-middle(ng-hide='g.edit')
 
-              //- Group title 
+              //- Group title
               .group-title.display-tcell.text-ellipsis {{g.title}}
 
-              //- Group item action 
+              //- Group item action
               .group-actions.display-tcell.text-right
                 .btn-group
                   button.btn.btn-xs.btn-link(ng-click='groupform.edit.open(g)', type='button', title='Редактировать', data-toggle='tooltip')
@@ -41,7 +41,7 @@
                   button.btn.btn-xs.btn-link(ng-click='groupform.actions.delete(g.id)', type='button', title='Удалить', data-toggle='tooltip')
                     i.fa.fa-fw.fa-trash-o
 
-            //- Group edit form 
+            //- Group edit form
             form.bookmark-group-form(ng-show='g.edit', ng-submit='groupform.edit.action(g)')
               .form-group-container
                 .row.row-narrow
@@ -59,13 +59,13 @@
                           button.btn.btn-sm.btn-block.btn-default(ng-click='groupform.edit.close(g)', type='button')
                             i.fa.fa-fw.fa-times
 
-        //- Groups placeholder 
+        //- Groups placeholder
         .group-list-placeholder.margin-sm-v.text-center(ng-if='!groups.length')
           i.fa.fa-fw.fa-3x.fa-folder-open-o
           h4.h3.text-bold.no-margin Нет категорий
           div Добавьте категорию с помощью формы внизу
 
-        //- Group add form 
+        //- Group add form
         form.group-form.bg-default(ng-submit='groupform.add.action()')
           .input-group
             input.form-control(ng-model='groupform.add.title', type='text', placeholder='Название категории', required='')

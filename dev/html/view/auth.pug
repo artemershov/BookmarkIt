@@ -7,38 +7,38 @@ main.bg-primary.fs.display-flex.flex-column.flex-justify-center
           i.fa.fa-fw.fa-2x.fa-bookmark
           div {{appname}}
 
-        //- Login form 
+        //- Login form
         form.margin-xs-b(ng-if='form.login.state', ng-submit='form.login.action()')
           h2.h3.no-margin-t.margin-sm-b Авторизация
-          //- Login errors 
+          //- Login errors
           div(ng-switch='form.login.error')
             .alert.bg-danger(ng-switch-when='2') Неверный пароль
             .alert.bg-warning(ng-switch-when='3') Аккаунт не зарегистрирован
             .alert.bg-info(ng-switch-when='4') Введены некорректные данные
-          //- Login 
+          //- Login
           .form-group
             input.form-control(ng-model='form.login.data.login', type='text', placeholder='Логин', required='', minlength='3', maxlength='100')
-          //- Password 
+          //- Password
           .form-group
             input.form-control(ng-model='form.login.data.pass', type='password', placeholder='Пароль', required='', minlength='3', maxlength='100')
           button.btn.btn-block.btn-success(type='submit') Войти
 
-        //- Registration form 
+        //- Registration form
         form.margin-xs-b(ng-if='form.register.state', ng-submit='form.register.action()')
           h2.h3.no-margin-t.margin-sm-b Регистрация
-          //- Registration errors 
+          //- Registration errors
           div(ng-switch='form.register.error')
             .alert.bg-danger(ng-switch-when='2') Ошибка сервера
             .alert.bg-warning(ng-switch-when='3') Такой логин уже занят
             .alert.bg-info(ng-switch-when='4') Введены некорректные данные
-          //- Login 
+          //- Login
           .form-group
             input.form-control(ng-model='form.register.data.login', type='text', placeholder='Логин', required='', minlength='3', maxlength='100')
-          //- Password 
+          //- Password
           .form-group
             input.form-control(ng-model='form.register.data.pass', type='password', placeholder='Пароль', required='', minlength='3', maxlength='100')
           button.btn.btn-block.btn-success(type='submit') Зарегистрироваться
 
-        //- Toggle form 
-        a.btn.btn-block.btn-link(ng-if='form.register.state', ng-click='form.toggle("login")', href='javascript:;') Войти в кабинет
-        a.btn.btn-block.btn-link(ng-if='form.login.state', ng-click='form.toggle("register")', href='javascript:;') Зарегистрироваться
+        //- Toggle form
+        a.btn.btn-block.btn-link(ng-if='form.register.state', ng-click='form.toggle("login")', href='#') Войти в кабинет
+        a.btn.btn-block.btn-link(ng-if='form.login.state', ng-click='form.toggle("register")', href='#') Зарегистрироваться

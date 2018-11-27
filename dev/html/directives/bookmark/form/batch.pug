@@ -2,12 +2,12 @@
   .container
     form.bookmark-batch-form.padding-xs-v(ng-submit='bookmarkForm.batch.submit()')
 
-      //- Form 
+      //- Form
       .form-group-container
         .row.row-narrow
           .col-xs-6.col-sm-3
 
-            //- Bookmarks 
+            //- Bookmarks
             .form-group(ng-switch='bookmarkForm.batch.data.selected().length')
               div(ng-switch-when='0')
                 button.btn.btn-block.btn-primary(type='button')
@@ -21,11 +21,11 @@
                     |  Выбрано: {{bookmarkForm.batch.data.selected().length}}
                 ul.dropdown-menu
                   li(ng-repeat='b in bookmarkForm.batch.data.selected() track by b.id')
-                    a.text-ellipsis(ng-click='b.batch = false', href='javascript:;')
+                    a.text-ellipsis(ng-click='b.batch = false', href='#')
                       i.fa.fa-fw.fa-minus-circle
                       |  {{b.title}}
 
-          //- Action 
+          //- Action
           .col-xs-6.col-sm-3
             .header-select.dropdown.form-group
               button.btn.btn-block.btn-primary.dropdown-toggle(ng-switch='bookmarkForm.batch.data.action', type='button', data-toggle='dropdown')
@@ -40,15 +40,15 @@
                   |  Выберите действие
               ul.dropdown-menu
                 li
-                  a.text-ellipsis(ng-click='bookmarkForm.batch.data.action = "move"', href='javascript:;')
+                  a.text-ellipsis(ng-click='bookmarkForm.batch.data.action = "move"', href='#')
                     i.fa.fa-fw.fa-folder-open
                     |  Переместить
                 li
-                  a.text-ellipsis(ng-click='bookmarkForm.batch.data.action = "delete"', href='javascript:;')
+                  a.text-ellipsis(ng-click='bookmarkForm.batch.data.action = "delete"', href='#')
                     i.fa.fa-fw.fa-trash-o
                     |  Удалить
 
-          //- Param 
+          //- Param
           .col-xs-6.col-sm-3
             .form-group(ng-switch='bookmarkForm.batch.data.action')
               .header-select.dropdown(ng-switch-when='move')
@@ -61,12 +61,12 @@
                     |  {{(groups | getById:bookmarkForm.batch.data.gid).title}}
                 ul.dropdown-menu
                   li(ng-repeat='g in groups track by g.id')
-                    a.text-ellipsis(ng-click='bookmarkForm.batch.data.gid = g.id', href='javascript:;')
+                    a.text-ellipsis(ng-click='bookmarkForm.batch.data.gid = g.id', href='#')
                       i.fa.fa-fw.fa-folder
                       |  {{g.title}}
                   li.divider
                   li
-                    a.text-ellipsis(href='javascript:;', data-toggle='modal', data-target='#groups-edit-modal')
+                    a.text-ellipsis(href='#', data-toggle='modal', data-target='#groups-edit-modal')
                       i.fa.fa-fw.fa-folder-open
                       |  Настроить категории
               button.btn.btn-block.btn-primary(ng-switch-when='delete', ng-click='bookmarkForm.batch.data.agree = !bookmarkForm.batch.data.agree', type='button')
@@ -78,14 +78,14 @@
           .col-xs-6.col-sm-3
             .form-group.row.row-narrow
               .col-xs-6
-                //- Cancel 
+                //- Cancel
                 button.btn.btn-block.btn-primary(ng-disabled='bookmarkForm.batch.loading', ng-click='bookmarkForm.batch.cancel()', type='button')
                   i.fa.fa-fw.fa-times
               .col-xs-6
-                //- Submit 
+                //- Submit
                 button.btn.btn-block.btn-success(ng-disabled='bookmarkForm.batch.loading', type='submit')
                   i.fa.fa-fw.fa-check
 
-      //- Loading 
+      //- Loading
       .bookmark-form-loading.bg-primary-dark.display-flex.flex-column.flex-justify-center.text-center.box-text-white(ng-if='bookmarkForm.batch.loading')
         i.fa.fa-3x.fa-spin.fa-circle-o-notch

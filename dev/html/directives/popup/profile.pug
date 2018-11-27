@@ -12,7 +12,7 @@
 
       .modal-body
 
-        //- Sessions 
+        //- Sessions
         .margin-md-b
           .form-group
             h4.no-margin
@@ -25,7 +25,7 @@
               |  Загрузка
             span(ng-if='!user.session.loading') Завершить
 
-        //- Pass change 
+        //- Pass change
         form.margin-md-b(ng-submit='user.pass.submit()')
           .form-group
             h4.no-margin Смена пароля
@@ -46,7 +46,7 @@
               |  Загрузка
             span(ng-if='!user.pass.loading') Сохранить
 
-        //- Remove account 
+        //- Remove account
         form(ng-submit='user.delete.submit()')
           .form-group
             h4.no-margin

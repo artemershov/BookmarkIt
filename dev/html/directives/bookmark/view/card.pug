@@ -1,26 +1,26 @@
 .bookmark-item.panel.panel-default.no-border.display-flex.flex-column.flex-justify-between
 
-  //- Bookmarks link 
+  //- Bookmarks link
   a.bookmark-link.display-block.text-primary(href='{{b.link}}', target='{{settings.global.newtab ? "_blank" : "_self"}}', rel='noopener')
 
-    //- Bookmarks image 
+    //- Bookmarks image
     bookmark-image(image='b.image', link='b.link', width='768', height='480')
     .panel-body
 
-      //- Bookmarks title 
+      //- Bookmarks title
       h3.bookmark-title.no-margin(ng-if='b.title') {{b.title}}
 
-      //- Bookmarks description 
+      //- Bookmarks description
       .bookmark-text.small.line-height-1.text-muted(ng-if='b.text && size !== "s"') {{b.text}}
 
   .panel-footer.no-border.line-height-xs
     .row.row-narrow.no-margin
       .col-xs-7.no-padding(ng-if='size !== "s"')
 
-        //- Bookmarks site 
+        //- Bookmarks site
         a.bookmark-site.display-block.text-ellipsis.small(href='{{b.link}}', target='{{settings.global.newtab ? "_blank" : "_self"}}', rel='noopener') {{b.link | urlSiteName}}
 
-      //- Bookmarks action 
+      //- Bookmarks action
       .no-padding.text-right(ng-class='{"col-xs-12": size == "s", "col-xs-5": size != "s"}')
         .btn-group.btn-group-justified
           a.btn.btn-xs.btn-link(ng-click='b.batch = !b.batch', href='', title='{{b.batch ? "Убрать из выбора" : "Выбрать для редактирования"}}', data-toggle='tooltip')

@@ -2,28 +2,28 @@ header.header.bg-primary.box-text-white
   .container.text-center-xs
     .row.row-narrow
 
-      //- Logo 
+      //- Logo
       .col-xs-3.col-lg-2
         button.btn.btn-block.btn-primary(ng-click='header.toggle("groups")', ng-class='{"active": header.state.groups}', type='button', title='Открыть панель групп')
           h1.logo.header-logo.no-margin
             i.fa.fa-bookmark
             span.hidden-xs  {{appname}}
 
-      //- Favorite link 
+      //- Favorite link
       .col-xs-3.col-sm-1
         a.btn.btn-block.btn-primary(ng-click='header.toggle()', href='fav', title='Избранное')
           i.fa.fa-fw.fa-star
 
-      //- Search panel 
+      //- Search panel
       .hidden-xs.col-sm-4.col-lg-6
         input.search.header-input.form-control(ng-model='search', ng-model-debounce='200', type='text', placeholder='Поиск', autofocus='')
 
-      //- Settings panel btn 
+      //- Settings panel btn
       .col-xs-3.col-sm-1
         button.btn.btn-block.btn-primary(ng-click='header.toggle("settings")', ng-class='{"active" : header.state.settings}', type='button', title='Открыть панель настроек')
           i.fa.fa-fw(ng-class='(header.state.settings ? "fa-times-circle" : "fa-cog")')
 
-      //- Add panel btn 
+      //- Add panel btn
       .col-xs-3.col-lg-2
         button.btn.btn-block(ng-click='header.toggle("addform")', ng-class='(header.state.addform ? "btn-primary active" : "btn-success")', type='button', title='Открыть форму добавления')
           span(ng-if='!header.state.addform')

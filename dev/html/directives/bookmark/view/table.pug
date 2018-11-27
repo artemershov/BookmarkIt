@@ -1,30 +1,30 @@
 .bookmark-item.display-table.table-fixed.table-valign-middle
 
-  //- Bookmarks favicon 
+  //- Bookmarks favicon
   a.bookmark-link.bookmark-favicon.display-tcell.text-center(ng-switch='b.favicon.length', href='{{b.link}}', target='{{settings.global.newtab ? "_blank" : "_self"}}', rel='noopener')
     i.fa.fa-image.text-muted(ng-switch-when='0', ng-class='{"fa-2x": size == "m", "fa-3x": size == "l"}')
     img.img-responsive.center-block(ng-switch-default='', src='{{b.favicon}}', alt='')
 
-  //- Bookmarks link 
+  //- Bookmarks link
   a.bookmark-link.bookmark-body.display-tcell(href='{{b.link}}', target='{{settings.global.newtab ? "_blank" : "_self"}}', rel='noopener')
 
-    //- Bookmarks title 
+    //- Bookmarks title
     h3.bookmark-title.h4.no-margin.text-ellipsis.text-bold.text-primary(ng-if='b.title') {{b.title}}
 
-    //- Bookmarks description 
+    //- Bookmarks description
     .bookmark-text.text-ellipsis.small.line-height-1.text-muted(ng-if='b.text && size != "s"') {{b.text}}
 
-    //- Bookmarks site 
+    //- Bookmarks site
     .bookmark-site.text-ellipsis.small.line-height-1.text-success(ng-if='size == "l"') {{b.link | urlSiteName}}
 
-  //- Bookmarks action mobile 
+  //- Bookmarks action mobile
   .bookmark-actions.display-tcell.text-right
     .dropdown.visible-xs-block
       button.btn.btn-xs.btn-link(type='button', data-toggle='dropdown')
         i.fa.fa-fw.fa-caret-down
       ul.dropdown-menu.dropdown-menu-right
         li
-          a(ng-click='b.batch = !b.batch', href='javascript:;')
+          a(ng-click='b.batch = !b.batch', href='#')
             span(ng-if='b.batch')
               i.fa.fa-fw.fa-check-square
               |  Убрать из выбора
@@ -32,7 +32,7 @@
               i.fa.fa-fw.fa-square-o
               |  Выбрать для редактирования
         li
-          a(ng-click='bookmarkActions.star(b)', href='javascript:;')
+          a(ng-click='bookmarkActions.star(b)', href='#')
             span(ng-if='b.star')
               i.fa.fa-fw.fa-star
               |  Убрать из избранного
@@ -40,15 +40,15 @@
               i.fa.fa-fw.fa-star-o
               |  Добавить в избранное
         li
-          a(ng-click='bookmarkActions.edit(b)', href='javascript:;')
+          a(ng-click='bookmarkActions.edit(b)', href='#')
             i.fa.fa-fw.fa-edit
             |  Редактировать
         li
-          a(ng-click='bookmarkActions.delete(b.id)', href='javascript:;')
+          a(ng-click='bookmarkActions.delete(b.id)', href='#')
             i.fa.fa-fw.fa-trash-o
             |  Удалить
 
-    //- Bookmarks action 
+    //- Bookmarks action
     .btn-group.hidden-xs
       button.btn.btn-xs.btn-link(ng-click='b.batch = !b.batch', title='{{b.batch ? "Убрать из выбора" : "Выбрать для редактирования"}}', data-toggle='tooltip')
         i.fa.fa-fw(ng-class='{"fa-square-o": !b.batch, "fa-check-square": b.batch}')

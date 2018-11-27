@@ -2,21 +2,21 @@
   .padding-xs-v
     .container.header-btn-container
 
-      //- Mobile search 
+      //- Mobile search
       .margin-sm-b.visible-xs-block
         input.header-input.form-control(ng-model='search', ng-model-debounce='500', type='text', placeholder='Поиск')
 
-      //- Groups header 
+      //- Groups header
       .row.row-narrow.margin-xs-b
         .col-xs-6
           h4.text-bold.no-margin Категории
         .col-xs-6.text-right
-          a(href='javascript:;', data-toggle='modal', data-target='#groups-edit-modal')
+          a(href='#', data-toggle='modal', data-target='#groups-edit-modal')
             i.fa.fa-fw.fa-folder-open.text-muted
             |  Настроить
             span.hidden-xs  категории
 
-      //- Groups list 
+      //- Groups list
       .row.row-narrow
         .col-xs-12.col-sm-4.col-md-3
           a.header-btn.btn.btn-block.btn-primary(href='./')

@@ -5,10 +5,10 @@
 
         .col-xs-12.col-sm-3
 
-          //- Header 
+          //- Header
           h4.text-ellipsis.text-bold Сортировка и группировка
 
-          //- Sort options 
+          //- Sort options
           .header-select.dropdown
             button.header-btn.btn.btn-block.btn-primary.dropdown-toggle(ng-switch='settings.current.sort', type='button', data-toggle='dropdown')
               .text-ellipsis.text-left(ng-switch-when='date')
@@ -22,24 +22,24 @@
                 |  Ручная сортировка
             ul.dropdown-menu
               li
-                a.text-ellipsis(ng-click='settingsSet("sort", "date")', href='javascript:;')
+                a.text-ellipsis(ng-click='settingsSet("sort", "date")', href='#')
                   i.fa.fa-fw.fa-calendar
                   |  По дате создания
               li
-                a.text-ellipsis(ng-click='settingsSet("sort", "title")', href='javascript:;')
+                a.text-ellipsis(ng-click='settingsSet("sort", "title")', href='#')
                   i.fa.fa-fw.fa-font
                   |  По алфавиту
               li
-                a.text-ellipsis(ng-click='settingsSet("sort", "pos")', href='javascript:;')
+                a.text-ellipsis(ng-click='settingsSet("sort", "pos")', href='#')
                   i.fa.fa-fw.fa-hand-pointer-o
                   |  Ручная сортировка
               li.divider.no-margin
               li
-                a.text-ellipsis(ng-click='settingsSet("reverse", !settings.current.reverse)', href='javascript:;')
+                a.text-ellipsis(ng-click='settingsSet("reverse", !settings.current.reverse)', href='#')
                   i.display-inline.fa.fa-lg.fa-fw(ng-class='{"fa-toggle-on text-success": !settings.current.reverse, "fa-toggle-off text-muted" : settings.current.reverse}')
                   |  В обратном порядке
 
-          //- Group option 
+          //- Group option
           button.header-btn.btn.btn-block.btn-primary(ng-click='settingsSet("group", !settings.current.group)', type='button')
             .text-ellipsis.text-left
               i.display-inline.fa.fa-lg.fa-fw(ng-class='{"fa-toggle-on text-success": settings.current.group, "fa-toggle-off text-muted" : !settings.current.group}')
@@ -47,10 +47,10 @@
 
         .col-xs-12.col-sm-3
 
-          //- Header 
+          //- Header
           h4.text-ellipsis.text-bold Вид и размер
 
-          //- View options 
+          //- View options
           .header-select.dropdown
             button.header-btn.btn.btn-block.btn-primary.dropdown-toggle(ng-switch='settings.current.layout', type='button', data-toggle='dropdown')
               .text-ellipsis.text-left(ng-switch-when='card')
@@ -64,19 +64,19 @@
                 |  Таблица
             ul.dropdown-menu
               li
-                a.text-ellipsis(ng-click='settingsSet("layout", "card")', href='javascript:;')
+                a.text-ellipsis(ng-click='settingsSet("layout", "card")', href='#')
                   i.fa.fa-fw.fa-th-large
                   |  Карточки
               li
-                a.text-ellipsis(ng-click='settingsSet("layout", "tile")', href='javascript:;')
+                a.text-ellipsis(ng-click='settingsSet("layout", "tile")', href='#')
                   i.fa.fa-fw.fa-th
                   |  Плитка
               li
-                a.text-ellipsis(ng-click='settingsSet("layout", "table")', href='javascript:;')
+                a.text-ellipsis(ng-click='settingsSet("layout", "table")', href='#')
                   i.fa.fa-fw.fa-th-list
                   |  Таблица
 
-          //- Size options 
+          //- Size options
           .header-select.dropdown
             button.header-btn.btn.btn-block.btn-primary.dropdown-toggle(ng-switch='settings.current.size', type='button', data-toggle='dropdown')
               .text-ellipsis.text-left(ng-switch-when='s')
@@ -90,30 +90,30 @@
                 |  Большой
             ul.dropdown-menu
               li
-                a.text-ellipsis(ng-click='settingsSet("size", "s")', href='javascript:;')
+                a.text-ellipsis(ng-click='settingsSet("size", "s")', href='#')
                   i.fa.fa-fw.fa-minus-square
                   |  Маленький
               li
-                a.text-ellipsis(ng-click='settingsSet("size", "m")', href='javascript:;')
+                a.text-ellipsis(ng-click='settingsSet("size", "m")', href='#')
                   i.fa.fa-fw.fa-square
                   |  Обычный
               li
-                a.text-ellipsis(ng-click='settingsSet("size", "l")', href='javascript:;')
+                a.text-ellipsis(ng-click='settingsSet("size", "l")', href='#')
                   i.fa.fa-fw.fa-plus-square
                   |  Большой
 
         .col-xs-12.col-sm-3
 
-          //- Header 
+          //- Header
           h4.text-ellipsis.text-bold Другое
 
-          //- New tab option 
+          //- New tab option
           button.header-btn.btn.btn-block.btn-primary(ng-click='settingsSet("newtab", !settings.global.newtab, true)', type='button')
             .text-ellipsis.text-left
               i.display-inline.fa.fa-lg.fa-fw(ng-class='{"fa-toggle-on text-success": settings.global.newtab, "fa-toggle-off text-muted" : !settings.global.newtab}')
               |  Открывать в новой вкладке
 
-          //- Search form 
+          //- Search form
           button.header-btn.btn.btn-block.btn-primary(ng-click='settingsSet("search", !settings.global.search, true)', type='button')
             .text-ellipsis.text-left
               i.display-inline.fa.fa-lg.fa-fw(ng-class='{"fa-toggle-on text-success": settings.global.search, "fa-toggle-off text-muted" : !settings.global.search}')
@@ -121,16 +121,16 @@
 
         .col-xs-12.col-sm-3
 
-          //- Header 
+          //- Header
           h4.text-ellipsis.text-bold Аккаунт
 
-          //- Profile modal 
+          //- Profile modal
           button.header-btn.btn.btn-block.btn-primary(type='button', data-toggle='modal', data-target='#profile-modal')
             .text-ellipsis.text-left
               i.fa.fa-fw.fa-user.text-muted
               |  Профиль
 
-          //- Logout modal 
+          //- Logout modal
           a.header-btn.btn.btn-block.btn-primary(href='logout')
             .text-ellipsis.text-left
               i.fa.fa-fw.fa-sign-out.text-muted

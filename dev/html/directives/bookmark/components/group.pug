@@ -1,31 +1,31 @@
 section.bookmark-group.container.padding-sm-v
 
-  //- Bookmarks group header 
+  //- Bookmarks group header
   h2.bookmark-group-title.h3.no-margin-t.margin-xs-b.text-ellipsis(ng-if='settings.current.group')
     a(href='group/{{g.id}}') {{g.title}}
 
-  //- Bookmarks layout 
+  //- Bookmarks layout
   div(ng-switch='settings.current.layout')
 
-    //- Bookmarks card grid 
+    //- Bookmarks card grid
     .bookmark-grid.bookmark-card.row.row-narrow.display-flex.flex-row.flex-wrap.no-overflow(
-      ng-switch-when='card', 
-      dnd-list='', 
-      dnd-drop='callback({targetIndex: index})', 
+      ng-switch-when='card',
+      dnd-list='',
+      dnd-drop='callback({targetIndex: index})',
       dnd-allowed-types='[(g.title || "group")]'
     )
 
-      //- Bookmarks item 
+      //- Bookmarks item
       .display-flex(
-        bookmark='', 
-        type='card', 
-        size='{{settings.current.size}}', 
-        ng-repeat='b in filteredBookmarks(g.id) | limitTo:limit.val track by b.id', 
-        dnd-disable-if='settings.current.sort !== "pos"', 
-        dnd-draggable='null', dnd-type='(g.title || "group")', 
-        dnd-callback='bookmarkActions.reorder(filteredBookmarks(g.id), $index, targetIndex)', 
-        dnd-dragstart='dndHelper.dragstart(event.target)', 
-        dnd-dragend='dndHelper.dragend()', 
+        bookmark='',
+        type='card',
+        size='{{settings.current.size}}',
+        ng-repeat='b in filteredBookmarks(g.id) | limitTo:limit.val track by b.id',
+        dnd-disable-if='settings.current.sort !== "pos"',
+        dnd-draggable='null', dnd-type='(g.title || "group")',
+        dnd-callback='bookmarkActions.reorder(filteredBookmarks(g.id), $index, targetIndex)',
+        dnd-dragstart='dndHelper.dragstart(event.target)',
+        dnd-dragend='dndHelper.dragend()',
         ng-class='{ \
           "bookmark-size-s col-xs-6  col-sm-4  col-md-3 col-lg-2": settings.current.size == "s", \
           "bookmark-size-m col-xs-12 col-sm-6  col-md-4 col-lg-3": settings.current.size == "m", \
@@ -33,26 +33,26 @@ section.bookmark-group.container.padding-sm-v
         }'
       )
 
-    //- Bookmarks tile grid 
+    //- Bookmarks tile grid
     .bookmark-grid.bookmark-tile.row.row-narrow.no-overflow(
-      ng-switch-when='tile', 
-      dnd-list='', 
-      dnd-drop='callback({targetIndex: index})', 
+      ng-switch-when='tile',
+      dnd-list='',
+      dnd-drop='callback({targetIndex: index})',
       dnd-allowed-types='[(g.title || "group")]'
     )
 
-      //- Bookmarks item 
+      //- Bookmarks item
       div(
-        bookmark='', 
-        type='tile', 
-        size='{{settings.current.size}}', 
-        ng-repeat='b in filteredBookmarks(g.id) | limitTo:limit.val track by b.id', 
-        dnd-disable-if='settings.current.sort !== "pos"', 
-        dnd-draggable='null', 
-        dnd-type='(g.title || "group")', 
-        dnd-callback='bookmarkActions.reorder(filteredBookmarks(g.id), $index, targetIndex)', 
-        dnd-dragstart='dndHelper.dragstart(event.target)', 
-        dnd-dragend='dndHelper.dragend()', 
+        bookmark='',
+        type='tile',
+        size='{{settings.current.size}}',
+        ng-repeat='b in filteredBookmarks(g.id) | limitTo:limit.val track by b.id',
+        dnd-disable-if='settings.current.sort !== "pos"',
+        dnd-draggable='null',
+        dnd-type='(g.title || "group")',
+        dnd-callback='bookmarkActions.reorder(filteredBookmarks(g.id), $index, targetIndex)',
+        dnd-dragstart='dndHelper.dragstart(event.target)',
+        dnd-dragend='dndHelper.dragend()',
         ng-class='{ \
           "bookmark-size-s col-xs-3 col-sm-2 col-md-1": settings.current.size == "s", \
           "bookmark-size-m col-xs-4 col-sm-3 col-md-2": settings.current.size == "m", \
@@ -60,25 +60,25 @@ section.bookmark-group.container.padding-sm-v
         }'
       )
 
-    //- Bookmarks table 
+    //- Bookmarks table
     ul.bookmark-table.list-group(
-      ng-switch-when='table', 
-      dnd-list='', 
-      dnd-drop='callback({targetIndex: index})', 
+      ng-switch-when='table',
+      dnd-list='',
+      dnd-drop='callback({targetIndex: index})',
       dnd-allowed-types='[(g.title || "group")]'
     )
 
-      //- Bookmarks item 
+      //- Bookmarks item
       li.list-group-item(
-        bookmark='', 
-        type='table', 
-        size='{{settings.current.size}}', 
-        ng-repeat='b in filteredBookmarks(g.id) | limitTo:limit.val track by b.id', 
-        dnd-disable-if='settings.current.sort !== "pos"', 
-        dnd-draggable='null', dnd-type='(g.title || "group")', 
-        dnd-callback='bookmarkActions.reorder(filteredBookmarks(g.id), $index, targetIndex)', 
-        dnd-dragstart='dndHelper.dragstart(event.target)', 
-        dnd-dragend='dndHelper.dragend()', 
+        bookmark='',
+        type='table',
+        size='{{settings.current.size}}',
+        ng-repeat='b in filteredBookmarks(g.id) | limitTo:limit.val track by b.id',
+        dnd-disable-if='settings.current.sort !== "pos"',
+        dnd-draggable='null', dnd-type='(g.title || "group")',
+        dnd-callback='bookmarkActions.reorder(filteredBookmarks(g.id), $index, targetIndex)',
+        dnd-dragstart='dndHelper.dragstart(event.target)',
+        dnd-dragend='dndHelper.dragend()',
         ng-class='{ \
           "bookmark-size-s": settings.current.size == "s", \
           "bookmark-size-m": settings.current.size == "m", \

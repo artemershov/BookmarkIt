@@ -18,12 +18,12 @@
                     |  {{(groups | getById:bookmarkForm.add.data.gid).title}}
                 ul.dropdown-menu
                   li(ng-repeat='g in groups track by g.id')
-                    a.text-ellipsis(ng-click='bookmarkForm.add.data.gid = g.id', href='javascript:;')
+                    a.text-ellipsis(ng-click='bookmarkForm.add.data.gid = g.id', href='#')
                       i.fa.fa-fw.fa-folder
                       |  {{g.title}}
                   li.divider
                   li
-                    a.text-ellipsis(href='javascript:;', data-toggle='modal', data-target='#groups-edit-modal')
+                    a.text-ellipsis(href='#', data-toggle='modal', data-target='#groups-edit-modal')
                       i.fa.fa-fw.fa-folder-open
                       |  Настроить категории
           .col-xs-3.col-sm-1
