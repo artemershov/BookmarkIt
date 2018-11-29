@@ -3,46 +3,26 @@
   "title": "BookmarkIt",
   "description": "Сервис для хранения и организации ваших закладок",
   "keywords": "закладки, избранное, bookmarks, favorites",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "Artem Ershov",
   "license": "ISC",
-  "eslintConfig": {
-    "env": {
-      "browser": true,
-      "es6": true,
-      "jquery": true
-    },
-    "extends": "eslint:recommended",
-    "globals": {
-      "angular": true
-    },
-    "rules": {
-      "indent": [
-        "error",
-        2,
-        {
-          "SwitchCase": 1
-        }
-      ],
-      "linebreak-style": [
-        "error",
-        "unix"
-      ],
-      "quotes": [
-        "error",
-        "single"
-      ],
-      "semi": [
-        "error",
-        "always"
-      ]
-    }
+  "scripts": {
+    "start": "npx gulp",
+    "compile": "npx gulp compile",
+    "clean": "npx gulp clean",
+    "watch": "npx gulp watch",
+    "eslint": "npx eslint dev",
+    "eslint-fix": "npx eslint dev --fix",
+    "prettier": "npx prettier --write dev/{,**}/*"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-eslint": "^10.0.1",
     "babel-preset-env": "^1.6.1",
     "browser-sync": "^2.23.2",
     "connect-history-api-fallback": "^1.5.0",
+    "eslint": "^5.9.0",
+    "eslint-config-prettier": "^3.3.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.1.0",
     "gulp-babel": "^7.0.0",
@@ -67,6 +47,7 @@
     "gulp-uglify": "^3.0.0",
     "imagemin-jpeg-recompress": "^5.1.0",
     "main-yarn-files": "^3.0.4",
+    "prettier": "^1.15.2",
     "run-sequence": "^2.2.1"
   },
   "dependencies": {

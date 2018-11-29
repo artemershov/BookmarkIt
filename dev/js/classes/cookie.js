@@ -1,13 +1,18 @@
 /* exported Cookie */
 
 class Cookie {
-
   constructor(name) {
     this.name = name;
   }
 
   get() {
-    let matches = document.cookie.match(new RegExp('(?:^|; )' + this.name.replace(/([.$?*|{}()[]\\\/\+^])/g, '\\$1') + '=([^;]*)'));
+    let matches = document.cookie.match(
+      new RegExp(
+        '(?:^|; )' +
+          this.name.replace(/([.$?*|{}()[]\\\/\+^])/g, '\\$1') +
+          '=([^;]*)'
+      )
+    );
     return matches ? decodeURIComponent(matches[1]) : undefined;
   }
 
@@ -30,7 +35,7 @@ class Cookie {
 
   delete() {
     this.set('', {
-      expires: -1
+      expires: -1,
     });
   }
 
@@ -41,5 +46,4 @@ class Cookie {
   set value(v) {
     this.set(v);
   }
-
 }

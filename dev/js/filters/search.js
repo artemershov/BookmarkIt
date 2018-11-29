@@ -1,9 +1,7 @@
 /* global app */
 
 app.filter('bookmarksSearch', () => (input, query) => {
-
   if (query) {
-
     query = query.toLowerCase();
 
     let out = [];
@@ -21,11 +19,7 @@ app.filter('bookmarksSearch', () => (input, query) => {
     }
 
     return out;
-
   } else {
-
     return input;
-
   }
-
 });

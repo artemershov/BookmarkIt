@@ -1,13 +1,12 @@
 /* exported Notify */
 
 class Notify {
-
   constructor(options) {
     let _options = {
       color: 'bg-primary',
-      icon:  'fa-check',
-      text:  'This is notification',
-      time:  2000,
+      icon: 'fa-check',
+      text: 'This is notification',
+      time: 2000,
       click: null,
     };
 
@@ -18,11 +17,14 @@ class Notify {
     this.options = _options;
     this.elements = {
       block: document.createElement('div'),
-      icon:  document.createElement('i'),
-      text:  document.createElement('span')
+      icon: document.createElement('i'),
+      text: document.createElement('span'),
     };
 
-    this.elements.block.setAttribute('class', 'notification alert center-block col-xs-10 col-sm-8 col-md-4 col-lg-3 text-center');
+    this.elements.block.setAttribute(
+      'class',
+      'notification alert center-block col-xs-10 col-sm-8 col-md-4 col-lg-3 text-center'
+    );
     this.elements.icon.setAttribute('class', 'fa fa-fw');
 
     this.timer = null;
@@ -32,8 +34,8 @@ class Notify {
     let o = this.options;
     let e = this.elements;
 
-    o.color.split(' ').forEach((c) => e.block.classList.add(c));
-    o.icon.split(' ').forEach((c) => e.icon.classList.add(c));
+    o.color.split(' ').forEach(c => e.block.classList.add(c));
+    o.icon.split(' ').forEach(c => e.icon.classList.add(c));
 
     e.text.innerHTML = o.text;
     e.block.addEventListener('click', () => {
@@ -64,13 +66,13 @@ class Notify {
     if (o.text) e.text.innerHTML = o.text;
 
     if (o.color) {
-      c.color.split(' ').forEach((c) => e.block.classList.remove(c));
-      o.color.split(' ').forEach((c) => e.block.classList.add(c));
+      c.color.split(' ').forEach(c => e.block.classList.remove(c));
+      o.color.split(' ').forEach(c => e.block.classList.add(c));
     }
 
     if (o.icon) {
-      c.icon.split(' ').forEach((c) => e.icon.classList.remove(c));
-      o.icon.split(' ').forEach((c) => e.icon.classList.add(c));
+      c.icon.split(' ').forEach(c => e.icon.classList.remove(c));
+      o.icon.split(' ').forEach(c => e.icon.classList.add(c));
     }
 
     if (o.time) {
@@ -82,5 +84,4 @@ class Notify {
 
     return this;
   }
-
 }

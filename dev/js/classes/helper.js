@@ -1,7 +1,3 @@
-// =====================================================================
-// https://gist.github.com/artemershov/de8f247e1b057b79905da631f5297d87
-// =====================================================================
-
 $(document).on('mouseenter', '[data-toggle="tooltip"]', function() {
   let el = $(this);
   el.tooltip({
@@ -10,10 +6,11 @@ $(document).on('mouseenter', '[data-toggle="tooltip"]', function() {
   });
 
   let t = setTimeout(() => el.tooltip('show'), 500);
-  if (el) el.one('mouseleave', () => {
-    clearTimeout(t);
-    el.tooltip('destroy');
-  });
+  if (el)
+    el.one('mouseleave', () => {
+      clearTimeout(t);
+      el.tooltip('destroy');
+    });
 });
 
 $(document).on('mouseenter', '[data-toggle="popover"]', function() {
@@ -23,15 +20,12 @@ $(document).on('mouseenter', '[data-toggle="popover"]', function() {
     trigger: 'manual',
   });
   let t = setTimeout(() => el.popover('show'), 1000);
-  if (el) el.one('mouseleave', () => {
-    clearTimeout(t);
-    el.popover('destroy');
-  });
+  if (el)
+    el.one('mouseleave', () => {
+      clearTimeout(t);
+      el.popover('destroy');
+    });
 });
-
-// =====================================================================
-// App
-// =====================================================================
 
 /* exported popupReset */
 

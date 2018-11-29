@@ -1,11 +1,6 @@
-// =====================================================================
-// https://gist.github.com/artemershov/de8f247e1b057b79905da631f5297d87
-// =====================================================================
-
 /* exported Storage */
 
 class Storage {
-
   constructor(name, session = false) {
     this.name = name;
     this.session = session;
@@ -13,14 +8,19 @@ class Storage {
 
   get() {
     try {
-      return JSON.parse((this.session ? sessionStorage : localStorage).getItem(this.name));
+      return JSON.parse(
+        (this.session ? sessionStorage : localStorage).getItem(this.name)
+      );
     } catch (e) {
       return false;
     }
   }
 
   set(v) {
-    (this.session ? sessionStorage : localStorage).setItem(this.name, JSON.stringify(v));
+    (this.session ? sessionStorage : localStorage).setItem(
+      this.name,
+      JSON.stringify(v)
+    );
     return true;
   }
 
@@ -35,5 +35,4 @@ class Storage {
   set value(v) {
     this.set(v);
   }
-
 }
